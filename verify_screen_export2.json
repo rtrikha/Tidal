@@ -1,0 +1,3531 @@
+{
+  "screenName": "Verify screen",
+  "screenId": "4934:26992",
+  "pageName": "Colors",
+  "exportDate": "2025-10-07T13:27:23.481Z",
+  "figmaUrl": "https://www.figma.com/file/undefined/12:2?node-id=4934:26992",
+  "structure": {
+    "name": "Verify screen",
+    "children": [
+      {
+        "name": "Map"
+      },
+      {
+        "name": "Single-stop route",
+        "children": [
+          {
+            "name": "Drop-off",
+            "children": [
+              {
+                "name": "Pin Pointer Wrapper",
+                "children": [
+                  {
+                    "name": "Pointer"
+                  }
+                ]
+              },
+              {
+                "name": "Pin Content",
+                "children": [
+                  {
+                    "name": "Leading Content",
+                    "children": [
+                      {
+                        "name": "Loading Indicator"
+                      },
+                      {
+                        "name": "Frame",
+                        "children": [
+                          {
+                            "name": "Content",
+                            "children": [
+                              {
+                                "name": "Location pin icon",
+                                "children": [
+                                  {
+                                    "name": "Destination icon"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Middle Content",
+                    "children": [
+                      {
+                        "name": "Secondary Text",
+                        "textContent": "Drop-off 10:12"
+                      },
+                      {
+                        "name": "Primary Text",
+                        "textContent": "Dubai Mall"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Trailing Content",
+                    "children": [
+                      {
+                        "name": "Icon"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Pickup",
+            "children": [
+              {
+                "name": "Pin Content",
+                "children": [
+                  {
+                    "name": "Leading Content",
+                    "children": [
+                      {
+                        "name": "Loading Indicator"
+                      },
+                      {
+                        "name": "Frame",
+                        "children": [
+                          {
+                            "name": "Content",
+                            "children": [
+                              {
+                                "name": "Icon"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Middle Content",
+                    "children": [
+                      {
+                        "name": "Secondary Text",
+                        "textContent": "Pickup in 4 mins"
+                      },
+                      {
+                        "name": "Primary Text",
+                        "textContent": "Careem HQ"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Trailing Content",
+                    "children": [
+                      {
+                        "name": "Icon"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Pin Pointer Wrapper",
+                "children": [
+                  {
+                    "name": "Pointer"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Header Navigation",
+        "children": [
+          {
+            "name": "Background",
+            "children": [
+              {
+                "name": "Scroll Border"
+              }
+            ]
+          },
+          {
+            "name": "Status Bar",
+            "children": [
+              {
+                "name": "Time",
+                "children": [
+                  {
+                    "name": "↳ Time",
+                    "textContent": "9:41"
+                  }
+                ]
+              },
+              {
+                "name": "Icons",
+                "children": [
+                  {
+                    "name": "Battery",
+                    "children": [
+                      {
+                        "name": "Rectangle"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Header",
+            "children": [
+              {
+                "name": "Leading Content / 1. Back",
+                "children": [
+                  {
+                    "name": "Circle Button",
+                    "children": [
+                      {
+                        "name": "Icon"
+                      },
+                      {
+                        "name": "Activity",
+                        "children": [
+                          {
+                            "name": "_Circle button elements/Activity"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Notification",
+                        "children": [
+                          {
+                            "name": "_Circle button elements/Notification"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Middle Content / 6. Hidden"
+              },
+              {
+                "name": "Trailing Content / 4. Global button",
+                "children": [
+                  {
+                    "name": "Circle Button",
+                    "children": [
+                      {
+                        "name": "Icon"
+                      },
+                      {
+                        "name": "Activity",
+                        "children": [
+                          {
+                            "name": "_Circle button elements/Activity"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Notification",
+                        "children": [
+                          {
+                            "name": "_Circle button elements/Notification"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Row 1",
+            "children": [
+              {
+                "name": "Search Input",
+                "children": [
+                  {
+                    "name": "Input Field",
+                    "children": [
+                      {
+                        "name": "Background"
+                      },
+                      {
+                        "name": "Text Content",
+                        "children": [
+                          {
+                            "name": "Text",
+                            "textContent": "Search"
+                          },
+                          {
+                            "name": "Active - Marker"
+                          },
+                          {
+                            "name": "Focus - Marker"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Trailing Icon Wrapper",
+                        "children": [
+                          {
+                            "name": "Trailing Icon"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Row 2",
+            "children": [
+              {
+                "name": "Filter Options",
+                "children": [
+                  {
+                    "name": "Touch area"
+                  },
+                  {
+                    "name": "Background"
+                  },
+                  {
+                    "name": "Border"
+                  },
+                  {
+                    "name": "Wrapper",
+                    "children": [
+                      {
+                        "name": "Leading content",
+                        "children": [
+                          {
+                            "name": "Icon"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Label",
+                        "textContent": "Chip"
+                      },
+                      {
+                        "name": "Icon"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Chips",
+                "children": [
+                  {
+                    "name": "Chips",
+                    "children": [
+                      {
+                        "name": "Touch area"
+                      },
+                      {
+                        "name": "Background"
+                      },
+                      {
+                        "name": "Border"
+                      },
+                      {
+                        "name": "Wrapper",
+                        "children": [
+                          {
+                            "name": "Leading content",
+                            "children": [
+                              {
+                                "name": "Icon"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "Chip"
+                          },
+                          {
+                            "name": "Icon"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Chips",
+                    "children": [
+                      {
+                        "name": "Touch area"
+                      },
+                      {
+                        "name": "Background"
+                      },
+                      {
+                        "name": "Border"
+                      },
+                      {
+                        "name": "Wrapper",
+                        "children": [
+                          {
+                            "name": "Leading content",
+                            "children": [
+                              {
+                                "name": "Icon"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "Chip"
+                          },
+                          {
+                            "name": "Icon"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Chips",
+                    "children": [
+                      {
+                        "name": "Touch area"
+                      },
+                      {
+                        "name": "Background"
+                      },
+                      {
+                        "name": "Border"
+                      },
+                      {
+                        "name": "Wrapper",
+                        "children": [
+                          {
+                            "name": "Leading content",
+                            "children": [
+                              {
+                                "name": "Icon"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "Chip"
+                          },
+                          {
+                            "name": "Icon"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Chips",
+                    "children": [
+                      {
+                        "name": "Touch area"
+                      },
+                      {
+                        "name": "Background"
+                      },
+                      {
+                        "name": "Border"
+                      },
+                      {
+                        "name": "Wrapper",
+                        "children": [
+                          {
+                            "name": "Leading content",
+                            "children": [
+                              {
+                                "name": "Icon"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "Chip"
+                          },
+                          {
+                            "name": "Icon"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Chips",
+                    "children": [
+                      {
+                        "name": "Touch area"
+                      },
+                      {
+                        "name": "Background"
+                      },
+                      {
+                        "name": "Border"
+                      },
+                      {
+                        "name": "Wrapper",
+                        "children": [
+                          {
+                            "name": "Leading content",
+                            "children": [
+                              {
+                                "name": "Icon"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "Chip"
+                          },
+                          {
+                            "name": "Icon"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Chips",
+                    "children": [
+                      {
+                        "name": "Touch area"
+                      },
+                      {
+                        "name": "Background"
+                      },
+                      {
+                        "name": "Border"
+                      },
+                      {
+                        "name": "Wrapper",
+                        "children": [
+                          {
+                            "name": "Leading content",
+                            "children": [
+                              {
+                                "name": "Icon"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "Chip"
+                          },
+                          {
+                            "name": "Icon"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Chips",
+                    "children": [
+                      {
+                        "name": "Touch area"
+                      },
+                      {
+                        "name": "Background"
+                      },
+                      {
+                        "name": "Border"
+                      },
+                      {
+                        "name": "Wrapper",
+                        "children": [
+                          {
+                            "name": "Leading content",
+                            "children": [
+                              {
+                                "name": "Icon"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "Chip"
+                          },
+                          {
+                            "name": "Icon"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Row 3",
+            "children": [
+              {
+                "name": "Tab Bar",
+                "children": [
+                  {
+                    "name": "Progress Background"
+                  },
+                  {
+                    "name": "Tab",
+                    "children": [
+                      {
+                        "name": "Content",
+                        "children": [
+                          {
+                            "name": "Icon"
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "Label"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Indicator"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Tab",
+                    "children": [
+                      {
+                        "name": "Content",
+                        "children": [
+                          {
+                            "name": "Icon"
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "Label"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Indicator"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Tab",
+                    "children": [
+                      {
+                        "name": "Content",
+                        "children": [
+                          {
+                            "name": "Icon"
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "Label"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Indicator"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Tab",
+                    "children": [
+                      {
+                        "name": "Content",
+                        "children": [
+                          {
+                            "name": "Icon"
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "Label"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Indicator"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Tab",
+                    "children": [
+                      {
+                        "name": "Content",
+                        "children": [
+                          {
+                            "name": "Icon"
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "Label"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Indicator"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Tab",
+                    "children": [
+                      {
+                        "name": "Content",
+                        "children": [
+                          {
+                            "name": "Icon"
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "Label"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Indicator"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Tab",
+                    "children": [
+                      {
+                        "name": "Content",
+                        "children": [
+                          {
+                            "name": "Icon"
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "Label"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Indicator"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Overlay"
+      },
+      {
+        "name": "Bottom content",
+        "children": [
+          {
+            "name": "CCT bottomsheet",
+            "children": [
+              {
+                "name": "CCT Sheet Header",
+                "children": [
+                  {
+                    "name": "BottomSheets/DragBar"
+                  },
+                  {
+                    "name": "Promotion",
+                    "children": [
+                      {
+                        "name": "DiscountFilled"
+                      },
+                      {
+                        "name": "Title",
+                        "children": [
+                          {
+                            "name": "20% discount applied",
+                            "textContent": "20% discount applied"
+                          },
+                          {
+                            "name": "Secondary",
+                            "children": [
+                              {
+                                "name": "•",
+                                "textContent": "•"
+                              },
+                              {
+                                "name": "Amount",
+                                "textContent": "Amount"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "ChevronRight"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Peak",
+                    "children": [
+                      {
+                        "name": "Peak icons"
+                      },
+                      {
+                        "name": "Title",
+                        "children": [
+                          {
+                            "name": "It’s busy",
+                            "textContent": "It’s busy"
+                          },
+                          {
+                            "name": "Secondary",
+                            "children": [
+                              {
+                                "name": "•",
+                                "textContent": "•"
+                              },
+                              {
+                                "name": "Comfort fares are slightly higher",
+                                "textContent": "Comfort fares are slightly higher"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Chips",
+                "children": [
+                  {
+                    "name": "Categories",
+                    "children": [
+                      {
+                        "name": "Chip",
+                        "children": [
+                          {
+                            "name": "Filters"
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "Fastest"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Chips",
+                        "children": [
+                          {
+                            "name": "Touch area"
+                          },
+                          {
+                            "name": "Background"
+                          },
+                          {
+                            "name": "Border"
+                          },
+                          {
+                            "name": "Wrapper",
+                            "children": [
+                              {
+                                "name": "Leading content",
+                                "children": [
+                                  {
+                                    "name": "Icon"
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "Label",
+                                "textContent": "For you"
+                              },
+                              {
+                                "name": "Airplane"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Chips",
+                        "children": [
+                          {
+                            "name": "Touch area"
+                          },
+                          {
+                            "name": "Background"
+                          },
+                          {
+                            "name": "Border"
+                          },
+                          {
+                            "name": "Wrapper",
+                            "children": [
+                              {
+                                "name": "Leading content",
+                                "children": [
+                                  {
+                                    "name": "Icon"
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "Label",
+                                "textContent": "Premium"
+                              },
+                              {
+                                "name": "Airplane"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Chip",
+                        "children": [
+                          {
+                            "name": "SuitcaseWork"
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "Hala"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Chip",
+                        "children": [
+                          {
+                            "name": "SuitcaseWork"
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "Kids"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Chip",
+                        "children": [
+                          {
+                            "name": "SuitcaseWork"
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "Bike"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Chip",
+                        "children": [
+                          {
+                            "name": "SuitcaseWork"
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "Rent"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "List items",
+                "children": [
+                  {
+                    "name": "Category label",
+                    "children": [
+                      {
+                        "name": "For you",
+                        "textContent": "For you"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "List variant",
+                    "children": [
+                      {
+                        "name": "List Item",
+                        "children": [
+                          {
+                            "name": "Background"
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "24",
+                                "textContent": "24"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Content",
+                            "children": [
+                              {
+                                "name": "Leading Content",
+                                "children": [
+                                  {
+                                    "name": "Leading content",
+                                    "children": [
+                                      {
+                                        "name": "Container",
+                                        "children": [
+                                          {
+                                            "name": "Frame"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "Content",
+                                "children": [
+                                  {
+                                    "name": "Top line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 1",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "Hala taxi"
+                                          },
+                                          {
+                                            "name": "Tag",
+                                            "children": [
+                                              {
+                                                "name": "Wrapper",
+                                                "children": [
+                                                  {
+                                                    "name": "Visual"
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "name": "Label",
+                                                "textContent": "4"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "Trailing Content",
+                                        "children": [
+                                          {
+                                            "name": "DiscountFilled"
+                                          },
+                                          {
+                                            "name": "Trailing Content / 3. Text",
+                                            "children": [
+                                              {
+                                                "name": "Text",
+                                                "textContent": "AED 34 - 38"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Trail content row 3",
+                                            "children": [
+                                              {
+                                                "name": "Tag",
+                                                "children": [
+                                                  {
+                                                    "name": "Wrapper",
+                                                    "children": [
+                                                      {
+                                                        "name": "Visual"
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "Label",
+                                                    "textContent": "Label"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Second line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 2",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "4 min away • 9:45"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "Trail content row 2",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "Earn AED 3.4 - 3.8"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Mid content row 3",
+                                    "children": [
+                                      {
+                                        "name": "Icon"
+                                      },
+                                      {
+                                        "name": "Text",
+                                        "textContent": "Best price"
+                                      },
+                                      {
+                                        "name": "Tag",
+                                        "children": [
+                                          {
+                                            "name": "Wrapper",
+                                            "children": [
+                                              {
+                                                "name": "Visual"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Label",
+                                            "textContent": "Ad"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "24",
+                                "textContent": "24"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Divider"
+                          },
+                          {
+                            "name": "Disable Overlay",
+                            "children": [
+                              {
+                                "name": "Colour Overlay"
+                              },
+                              {
+                                "name": "Saturation Overlay"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Car type selected",
+                        "children": [
+                          {
+                            "name": "Leading content",
+                            "children": [
+                              {
+                                "name": "Container",
+                                "children": [
+                                  {
+                                    "name": "Background layer"
+                                  },
+                                  {
+                                    "name": "Image placement"
+                                  },
+                                  {
+                                    "name": "Wrapper",
+                                    "children": [
+                                      {
+                                        "name": "_Content type",
+                                        "children": [
+                                          {
+                                            "name": "Icon"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "CareemPlus"
+                  },
+                  {
+                    "name": "List variant",
+                    "children": [
+                      {
+                        "name": "List Item",
+                        "children": [
+                          {
+                            "name": "Background"
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "16",
+                                "textContent": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Content",
+                            "children": [
+                              {
+                                "name": "Leading Content",
+                                "children": [
+                                  {
+                                    "name": "Car type",
+                                    "children": [
+                                      {
+                                        "name": "Container",
+                                        "children": [
+                                          {
+                                            "name": "Frame"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "Content",
+                                "children": [
+                                  {
+                                    "name": "Top line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 1",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "Comfort"
+                                          },
+                                          {
+                                            "name": "Tag",
+                                            "children": [
+                                              {
+                                                "name": "Wrapper",
+                                                "children": [
+                                                  {
+                                                    "name": "Visual"
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "name": "Label",
+                                                "textContent": "4"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "Trailing Content",
+                                        "children": [
+                                          {
+                                            "name": "Trailing Content / 3. Text",
+                                            "children": [
+                                              {
+                                                "name": "Text",
+                                                "textContent": "AED 36 - 40"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Trail content row 3",
+                                            "children": [
+                                              {
+                                                "name": "Tag",
+                                                "children": [
+                                                  {
+                                                    "name": "Wrapper",
+                                                    "children": [
+                                                      {
+                                                        "name": "Visual"
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "Label",
+                                                    "textContent": "Label"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Second line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 2",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "5 min away • 9:44"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Mid content row 3",
+                                    "children": [
+                                      {
+                                        "name": "Icon"
+                                      },
+                                      {
+                                        "name": "Text",
+                                        "textContent": "Best price"
+                                      },
+                                      {
+                                        "name": "Tag",
+                                        "children": [
+                                          {
+                                            "name": "Wrapper",
+                                            "children": [
+                                              {
+                                                "name": "Visual"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Label",
+                                            "textContent": "Ad"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "16",
+                                "textContent": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Divider"
+                          },
+                          {
+                            "name": "Disable Overlay",
+                            "children": [
+                              {
+                                "name": "Colour Overlay"
+                              },
+                              {
+                                "name": "Saturation Overlay"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "List variant",
+                    "children": [
+                      {
+                        "name": "List Item",
+                        "children": [
+                          {
+                            "name": "Background"
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "16",
+                                "textContent": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Content",
+                            "children": [
+                              {
+                                "name": "Leading Content",
+                                "children": [
+                                  {
+                                    "name": "Car type",
+                                    "children": [
+                                      {
+                                        "name": "Container",
+                                        "children": [
+                                          {
+                                            "name": "Frame"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "Content",
+                                "children": [
+                                  {
+                                    "name": "Top line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 1",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "Executive"
+                                          },
+                                          {
+                                            "name": "Tag",
+                                            "children": [
+                                              {
+                                                "name": "Wrapper",
+                                                "children": [
+                                                  {
+                                                    "name": "Visual"
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "name": "Label",
+                                                "textContent": "4"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "Trailing Content",
+                                        "children": [
+                                          {
+                                            "name": "Trailing Content / 3. Text",
+                                            "children": [
+                                              {
+                                                "name": "Text",
+                                                "textContent": "AED 42 - 46"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Trail content row 3",
+                                            "children": [
+                                              {
+                                                "name": "Tag",
+                                                "children": [
+                                                  {
+                                                    "name": "Wrapper",
+                                                    "children": [
+                                                      {
+                                                        "name": "Visual"
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "Label",
+                                                    "textContent": "Label"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Second line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 2",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "8 min away • 9:46"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Mid content row 3",
+                                    "children": [
+                                      {
+                                        "name": "Icon"
+                                      },
+                                      {
+                                        "name": "Text",
+                                        "textContent": "Best price"
+                                      },
+                                      {
+                                        "name": "Tag",
+                                        "children": [
+                                          {
+                                            "name": "Wrapper",
+                                            "children": [
+                                              {
+                                                "name": "Visual"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Label",
+                                            "textContent": "Ad"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "16",
+                                "textContent": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Divider"
+                          },
+                          {
+                            "name": "Disable Overlay",
+                            "children": [
+                              {
+                                "name": "Colour Overlay"
+                              },
+                              {
+                                "name": "Saturation Overlay"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Category label",
+                    "children": [
+                      {
+                        "name": "Premium",
+                        "textContent": "Premium"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "List variant",
+                    "children": [
+                      {
+                        "name": "List Item",
+                        "children": [
+                          {
+                            "name": "Background"
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "16",
+                                "textContent": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Content",
+                            "children": [
+                              {
+                                "name": "Leading Content",
+                                "children": [
+                                  {
+                                    "name": "Car type",
+                                    "children": [
+                                      {
+                                        "name": "Content Container",
+                                        "children": [
+                                          {
+                                            "name": "Frame"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "Content",
+                                "children": [
+                                  {
+                                    "name": "Top line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 1",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "Premier"
+                                          },
+                                          {
+                                            "name": "Tag",
+                                            "children": [
+                                              {
+                                                "name": "Wrapper",
+                                                "children": [
+                                                  {
+                                                    "name": "Visual"
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "name": "Label",
+                                                "textContent": "4"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "Trailing Content",
+                                        "children": [
+                                          {
+                                            "name": "DiscountFilled"
+                                          },
+                                          {
+                                            "name": "Trailing Content / 3. Text",
+                                            "children": [
+                                              {
+                                                "name": "Text",
+                                                "textContent": "AED 60 - 64"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Trail content row 3",
+                                            "children": [
+                                              {
+                                                "name": "Tag",
+                                                "children": [
+                                                  {
+                                                    "name": "Wrapper",
+                                                    "children": [
+                                                      {
+                                                        "name": "Visual"
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "Label",
+                                                    "textContent": "Label"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Second line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 2",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "6 min away • 9:47"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "Trail content row 2",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "AED 66 - 70"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Mid content row 3",
+                                    "children": [
+                                      {
+                                        "name": "Icon"
+                                      },
+                                      {
+                                        "name": "Text",
+                                        "textContent": "Best price"
+                                      },
+                                      {
+                                        "name": "Tag",
+                                        "children": [
+                                          {
+                                            "name": "Wrapper",
+                                            "children": [
+                                              {
+                                                "name": "Visual"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Label",
+                                            "textContent": "Ad"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "16",
+                                "textContent": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Divider"
+                          },
+                          {
+                            "name": "Disable Overlay",
+                            "children": [
+                              {
+                                "name": "Colour Overlay"
+                              },
+                              {
+                                "name": "Saturation Overlay"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "List variant",
+                    "children": [
+                      {
+                        "name": "List Item",
+                        "children": [
+                          {
+                            "name": "Background"
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "16",
+                                "textContent": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Content",
+                            "children": [
+                              {
+                                "name": "Leading Content",
+                                "children": [
+                                  {
+                                    "name": "Car type",
+                                    "children": [
+                                      {
+                                        "name": "Content Container",
+                                        "children": [
+                                          {
+                                            "name": "Frame"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "Content",
+                                "children": [
+                                  {
+                                    "name": "Top line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 1",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "Electric"
+                                          },
+                                          {
+                                            "name": "Tag",
+                                            "children": [
+                                              {
+                                                "name": "Wrapper",
+                                                "children": [
+                                                  {
+                                                    "name": "Visual"
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "name": "Label",
+                                                "textContent": "4"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "Trailing Content",
+                                        "children": [
+                                          {
+                                            "name": "DiscountFilled"
+                                          },
+                                          {
+                                            "name": "Trailing Content / 3. Text",
+                                            "children": [
+                                              {
+                                                "name": "Text",
+                                                "textContent": "AED 60 - 64"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Trail content row 3",
+                                            "children": [
+                                              {
+                                                "name": "Tag",
+                                                "children": [
+                                                  {
+                                                    "name": "Wrapper",
+                                                    "children": [
+                                                      {
+                                                        "name": "Visual"
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "Label",
+                                                    "textContent": "Label"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Second line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 2",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "8 min away • 9:49"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "Trail content row 2",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "AED 66 - 70"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Mid content row 3",
+                                    "children": [
+                                      {
+                                        "name": "Icon"
+                                      },
+                                      {
+                                        "name": "Text",
+                                        "textContent": "Best price"
+                                      },
+                                      {
+                                        "name": "Tag",
+                                        "children": [
+                                          {
+                                            "name": "Wrapper",
+                                            "children": [
+                                              {
+                                                "name": "Visual"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Label",
+                                            "textContent": "Ad"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Bonus line",
+                                    "children": [
+                                      {
+                                        "name": "Icon"
+                                      },
+                                      {
+                                        "name": "Text",
+                                        "textContent": "Sustainable"
+                                      },
+                                      {
+                                        "name": "Tag",
+                                        "children": [
+                                          {
+                                            "name": "Wrapper",
+                                            "children": [
+                                              {
+                                                "name": "Visual"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Label",
+                                            "textContent": "Ad"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "16",
+                                "textContent": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Divider"
+                          },
+                          {
+                            "name": "Disable Overlay",
+                            "children": [
+                              {
+                                "name": "Colour Overlay"
+                              },
+                              {
+                                "name": "Saturation Overlay"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "List variant",
+                    "children": [
+                      {
+                        "name": "List Item",
+                        "children": [
+                          {
+                            "name": "Background"
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "16",
+                                "textContent": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Content",
+                            "children": [
+                              {
+                                "name": "Leading Content",
+                                "children": [
+                                  {
+                                    "name": "Car type",
+                                    "children": [
+                                      {
+                                        "name": "Content Container",
+                                        "children": [
+                                          {
+                                            "name": "Frame"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "Content",
+                                "children": [
+                                  {
+                                    "name": "Top line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 1",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "Max"
+                                          },
+                                          {
+                                            "name": "Tag",
+                                            "children": [
+                                              {
+                                                "name": "Wrapper",
+                                                "children": [
+                                                  {
+                                                    "name": "Visual"
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "name": "Label",
+                                                "textContent": "6"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "Trailing Content",
+                                        "children": [
+                                          {
+                                            "name": "DiscountFilled"
+                                          },
+                                          {
+                                            "name": "Trailing Content / 3. Text",
+                                            "children": [
+                                              {
+                                                "name": "Text",
+                                                "textContent": "AED 51 - 55"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Trail content row 3",
+                                            "children": [
+                                              {
+                                                "name": "Tag",
+                                                "children": [
+                                                  {
+                                                    "name": "Wrapper",
+                                                    "children": [
+                                                      {
+                                                        "name": "Visual"
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "Label",
+                                                    "textContent": "Label"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Second line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 2",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "8 min away • 9:49"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "Trail content row 2",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "AED 57 - 61"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Mid content row 3",
+                                    "children": [
+                                      {
+                                        "name": "Icon"
+                                      },
+                                      {
+                                        "name": "Text",
+                                        "textContent": "Best price"
+                                      },
+                                      {
+                                        "name": "Tag",
+                                        "children": [
+                                          {
+                                            "name": "Wrapper",
+                                            "children": [
+                                              {
+                                                "name": "Visual"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Label",
+                                            "textContent": "Ad"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "16",
+                                "textContent": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Divider"
+                          },
+                          {
+                            "name": "Disable Overlay",
+                            "children": [
+                              {
+                                "name": "Colour Overlay"
+                              },
+                              {
+                                "name": "Saturation Overlay"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Category label",
+                    "children": [
+                      {
+                        "name": "Hala",
+                        "textContent": "Hala"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "List variant",
+                    "children": [
+                      {
+                        "name": "List Item",
+                        "children": [
+                          {
+                            "name": "Background"
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "16",
+                                "textContent": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Content",
+                            "children": [
+                              {
+                                "name": "Leading Content",
+                                "children": [
+                                  {
+                                    "name": "Car type",
+                                    "children": [
+                                      {
+                                        "name": "Content Container",
+                                        "children": [
+                                          {
+                                            "name": "Frame"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "Content",
+                                "children": [
+                                  {
+                                    "name": "Top line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 1",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "Hala Max"
+                                          },
+                                          {
+                                            "name": "Tag",
+                                            "children": [
+                                              {
+                                                "name": "Wrapper",
+                                                "children": [
+                                                  {
+                                                    "name": "Visual"
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "name": "Label",
+                                                "textContent": "6"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "Trailing Content",
+                                        "children": [
+                                          {
+                                            "name": "DiscountFilled"
+                                          },
+                                          {
+                                            "name": "Trailing Content / 3. Text",
+                                            "children": [
+                                              {
+                                                "name": "Text",
+                                                "textContent": "AED 38 - 42"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Trail content row 3",
+                                            "children": [
+                                              {
+                                                "name": "Tag",
+                                                "children": [
+                                                  {
+                                                    "name": "Wrapper",
+                                                    "children": [
+                                                      {
+                                                        "name": "Visual"
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "Label",
+                                                    "textContent": "Label"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Second line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 2",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "8 min away • 9:49"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "Trail content row 2",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "AED 44 - 48"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Mid content row 3",
+                                    "children": [
+                                      {
+                                        "name": "Icon"
+                                      },
+                                      {
+                                        "name": "Text",
+                                        "textContent": "Best price"
+                                      },
+                                      {
+                                        "name": "Tag",
+                                        "children": [
+                                          {
+                                            "name": "Wrapper",
+                                            "children": [
+                                              {
+                                                "name": "Visual"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Label",
+                                            "textContent": "Ad"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "16",
+                                "textContent": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Divider"
+                          },
+                          {
+                            "name": "Disable Overlay",
+                            "children": [
+                              {
+                                "name": "Colour Overlay"
+                              },
+                              {
+                                "name": "Saturation Overlay"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "List variant",
+                    "children": [
+                      {
+                        "name": "List Item",
+                        "children": [
+                          {
+                            "name": "Background"
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "16",
+                                "textContent": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Content",
+                            "children": [
+                              {
+                                "name": "Leading Content",
+                                "children": [
+                                  {
+                                    "name": "Car type",
+                                    "children": [
+                                      {
+                                        "name": "Content Container",
+                                        "children": [
+                                          {
+                                            "name": "Frame"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "Content",
+                                "children": [
+                                  {
+                                    "name": "Top line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 1",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "Hala Kids"
+                                          },
+                                          {
+                                            "name": "Tag",
+                                            "children": [
+                                              {
+                                                "name": "Wrapper",
+                                                "children": [
+                                                  {
+                                                    "name": "Visual"
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "name": "Label",
+                                                "textContent": "4"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "Trailing Content",
+                                        "children": [
+                                          {
+                                            "name": "DiscountFilled"
+                                          },
+                                          {
+                                            "name": "Trailing Content / 3. Text",
+                                            "children": [
+                                              {
+                                                "name": "Text",
+                                                "textContent": "AED 34 - 38"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Trail content row 3",
+                                            "children": [
+                                              {
+                                                "name": "Tag",
+                                                "children": [
+                                                  {
+                                                    "name": "Wrapper",
+                                                    "children": [
+                                                      {
+                                                        "name": "Visual"
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "Label",
+                                                    "textContent": "Label"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Second line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 2",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "9 min away • 9:50"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "Trail content row 2",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "AED 38 - 42"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Mid content row 3",
+                                    "children": [
+                                      {
+                                        "name": "Icon"
+                                      },
+                                      {
+                                        "name": "Text",
+                                        "textContent": "Best price"
+                                      },
+                                      {
+                                        "name": "Tag",
+                                        "children": [
+                                          {
+                                            "name": "Wrapper",
+                                            "children": [
+                                              {
+                                                "name": "Visual"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Label",
+                                            "textContent": "Ad"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Bonus line",
+                                    "children": [
+                                      {
+                                        "name": "Icon"
+                                      },
+                                      {
+                                        "name": "Text",
+                                        "textContent": "Kids seat"
+                                      },
+                                      {
+                                        "name": "Tag",
+                                        "children": [
+                                          {
+                                            "name": "Wrapper",
+                                            "children": [
+                                              {
+                                                "name": "Visual"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Label",
+                                            "textContent": "Ad"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "16",
+                                "textContent": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Divider"
+                          },
+                          {
+                            "name": "Disable Overlay",
+                            "children": [
+                              {
+                                "name": "Colour Overlay"
+                              },
+                              {
+                                "name": "Saturation Overlay"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Category label",
+                    "children": [
+                      {
+                        "name": "Kids",
+                        "textContent": "Kids"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "List variant",
+                    "children": [
+                      {
+                        "name": "List Item",
+                        "children": [
+                          {
+                            "name": "Background"
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "16",
+                                "textContent": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Content",
+                            "children": [
+                              {
+                                "name": "Leading Content",
+                                "children": [
+                                  {
+                                    "name": "Car type",
+                                    "children": [
+                                      {
+                                        "name": "Content Container",
+                                        "children": [
+                                          {
+                                            "name": "Frame"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "Content",
+                                "children": [
+                                  {
+                                    "name": "Top line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 1",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "Kids"
+                                          },
+                                          {
+                                            "name": "Tag",
+                                            "children": [
+                                              {
+                                                "name": "Wrapper",
+                                                "children": [
+                                                  {
+                                                    "name": "Visual"
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "name": "Label",
+                                                "textContent": "4"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "Trailing Content",
+                                        "children": [
+                                          {
+                                            "name": "DiscountFilled"
+                                          },
+                                          {
+                                            "name": "Trailing Content / 3. Text",
+                                            "children": [
+                                              {
+                                                "name": "Text",
+                                                "textContent": "AED 43 - 47"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Trail content row 3",
+                                            "children": [
+                                              {
+                                                "name": "Tag",
+                                                "children": [
+                                                  {
+                                                    "name": "Wrapper",
+                                                    "children": [
+                                                      {
+                                                        "name": "Visual"
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "Label",
+                                                    "textContent": "Label"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Second line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 2",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "9 min away • 9:50"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "Trail content row 2",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "AED 48 - 52"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Mid content row 3",
+                                    "children": [
+                                      {
+                                        "name": "Icon"
+                                      },
+                                      {
+                                        "name": "Text",
+                                        "textContent": "Best price"
+                                      },
+                                      {
+                                        "name": "Tag",
+                                        "children": [
+                                          {
+                                            "name": "Wrapper",
+                                            "children": [
+                                              {
+                                                "name": "Visual"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Label",
+                                            "textContent": "Ad"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Bonus line",
+                                    "children": [
+                                      {
+                                        "name": "Icon"
+                                      },
+                                      {
+                                        "name": "Text",
+                                        "textContent": "Kids seat"
+                                      },
+                                      {
+                                        "name": "Tag",
+                                        "children": [
+                                          {
+                                            "name": "Wrapper",
+                                            "children": [
+                                              {
+                                                "name": "Visual"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Label",
+                                            "textContent": "Ad"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "16",
+                                "textContent": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Divider"
+                          },
+                          {
+                            "name": "Disable Overlay",
+                            "children": [
+                              {
+                                "name": "Colour Overlay"
+                              },
+                              {
+                                "name": "Saturation Overlay"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Category label",
+                    "children": [
+                      {
+                        "name": "Bike",
+                        "textContent": "Bike"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "List variant",
+                    "children": [
+                      {
+                        "name": "List Item",
+                        "children": [
+                          {
+                            "name": "Background"
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "16",
+                                "textContent": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Content",
+                            "children": [
+                              {
+                                "name": "Leading Content",
+                                "children": [
+                                  {
+                                    "name": "Car type",
+                                    "children": [
+                                      {
+                                        "name": "Content Container",
+                                        "children": [
+                                          {
+                                            "name": "Frame"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "Content",
+                                "children": [
+                                  {
+                                    "name": "Top line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 1",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "Bike"
+                                          },
+                                          {
+                                            "name": "Tag",
+                                            "children": [
+                                              {
+                                                "name": "Wrapper",
+                                                "children": [
+                                                  {
+                                                    "name": "Visual"
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "name": "Label",
+                                                "textContent": "4"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "Trailing Content",
+                                        "children": [
+                                          {
+                                            "name": "Elements/Trailing Content/3. Text",
+                                            "children": [
+                                              {
+                                                "name": "Text",
+                                                "textContent": "AED 19"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Trail content row 3",
+                                            "children": [
+                                              {
+                                                "name": "Tag",
+                                                "children": [
+                                                  {
+                                                    "name": "Wrapper",
+                                                    "children": [
+                                                      {
+                                                        "name": "Visual"
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "Label",
+                                                    "textContent": "Label"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Second line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 2",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "Bike for a day"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Mid content row 3",
+                                    "children": [
+                                      {
+                                        "name": "Icon"
+                                      },
+                                      {
+                                        "name": "Text",
+                                        "textContent": "Best price"
+                                      },
+                                      {
+                                        "name": "Tag",
+                                        "children": [
+                                          {
+                                            "name": "Wrapper",
+                                            "children": [
+                                              {
+                                                "name": "Visual"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Label",
+                                            "textContent": "Ad"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "16",
+                                "textContent": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Divider"
+                          },
+                          {
+                            "name": "Disable Overlay",
+                            "children": [
+                              {
+                                "name": "Colour Overlay"
+                              },
+                              {
+                                "name": "Saturation Overlay"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Category label",
+                    "children": [
+                      {
+                        "name": "Rent",
+                        "textContent": "Rent"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "List variant",
+                    "children": [
+                      {
+                        "name": "List Item",
+                        "children": [
+                          {
+                            "name": "Background"
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "16",
+                                "textContent": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Content",
+                            "children": [
+                              {
+                                "name": "Leading Content",
+                                "children": [
+                                  {
+                                    "name": "Car type",
+                                    "children": [
+                                      {
+                                        "name": "Content Container",
+                                        "children": [
+                                          {
+                                            "name": "Frame"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "Content",
+                                "children": [
+                                  {
+                                    "name": "Top line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 1",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "Car rental"
+                                          },
+                                          {
+                                            "name": "Tag",
+                                            "children": [
+                                              {
+                                                "name": "Wrapper",
+                                                "children": [
+                                                  {
+                                                    "name": "Visual"
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "name": "Label",
+                                                "textContent": "4"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "Trailing Content",
+                                        "children": [
+                                          {
+                                            "name": "Elements/Trailing Content/3. Text",
+                                            "children": [
+                                              {
+                                                "name": "Text",
+                                                "textContent": "From AED 500"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Trail content row 3",
+                                            "children": [
+                                              {
+                                                "name": "Tag",
+                                                "children": [
+                                                  {
+                                                    "name": "Wrapper",
+                                                    "children": [
+                                                      {
+                                                        "name": "Visual"
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "Label",
+                                                    "textContent": "Label"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Second line",
+                                    "children": [
+                                      {
+                                        "name": "Mid content row 2",
+                                        "children": [
+                                          {
+                                            "name": "Text",
+                                            "textContent": "Rent for a day"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Mid content row 3",
+                                    "children": [
+                                      {
+                                        "name": "Icon"
+                                      },
+                                      {
+                                        "name": "Text",
+                                        "textContent": "Best price"
+                                      },
+                                      {
+                                        "name": "Tag",
+                                        "children": [
+                                          {
+                                            "name": "Wrapper",
+                                            "children": [
+                                              {
+                                                "name": "Visual"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Label",
+                                            "textContent": "Ad"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Padding",
+                            "children": [
+                              {
+                                "name": "16",
+                                "textContent": "16"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Divider"
+                          },
+                          {
+                            "name": "Disable Overlay",
+                            "children": [
+                              {
+                                "name": "Colour Overlay"
+                              },
+                              {
+                                "name": "Saturation Overlay"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "CareemPlus"
+                  },
+                  {
+                    "name": "CareemPlus"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Map Action Buttons",
+            "children": [
+              {
+                "name": "Frame 1597884758",
+                "children": [
+                  {
+                    "name": "icn/google",
+                    "children": [
+                      {
+                        "name": "google-logo"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Map Actions",
+                    "children": [
+                      {
+                        "name": "Map modifiers",
+                        "children": [
+                          {
+                            "name": "Main Ellipse",
+                            "children": [
+                              {
+                                "name": "expand_content",
+                                "children": [
+                                  {
+                                    "name": "Bounding box"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Fixed bottom content",
+            "children": [
+              {
+                "name": "CPlus subscription banner",
+                "children": [
+                  {
+                    "name": "Promotion",
+                    "children": [
+                      {
+                        "name": "Image alignment",
+                        "children": [
+                          {
+                            "name": "Image - Change fill property"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "CPlus tag"
+                      },
+                      {
+                        "name": "Promotion",
+                        "children": [
+                          {
+                            "name": "Value prop",
+                            "textContent": "You’ll get 10% back on this ride"
+                          },
+                          {
+                            "name": "Intro",
+                            "textContent": "Try Plus free for 30 days, cancel anytime"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Trailing Content / 8. Checkbox",
+                        "children": [
+                          {
+                            "name": "Checkbox",
+                            "children": [
+                              {
+                                "name": "Checkbox",
+                                "children": [
+                                  {
+                                    "name": "Check"
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "Label wrapper",
+                                "children": [
+                                  {
+                                    "name": "Label",
+                                    "textContent": "Select"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Pay Section",
+                "children": [
+                  {
+                    "name": "Payment + Promos",
+                    "children": [
+                      {
+                        "name": "List Item",
+                        "children": [
+                          {
+                            "name": "Background"
+                          },
+                          {
+                            "name": "PaySDK",
+                            "children": [
+                              {
+                                "name": "Profile Toggle",
+                                "children": [
+                                  {
+                                    "name": "Toggle"
+                                  },
+                                  {
+                                    "name": "Personal Profile Icon"
+                                  },
+                                  {
+                                    "name": "Work Profile Icon"
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "Middle Content",
+                                "children": [
+                                  {
+                                    "name": "Payment details",
+                                    "children": [
+                                      {
+                                        "name": "Text",
+                                        "textContent": "VISA ••6690"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Mid content row 3",
+                                    "children": [
+                                      {
+                                        "name": "Icon"
+                                      },
+                                      {
+                                        "name": "Text",
+                                        "textContent": "Secondary text line"
+                                      },
+                                      {
+                                        "name": "Tag",
+                                        "children": [
+                                          {
+                                            "name": "Wrapper",
+                                            "children": [
+                                              {
+                                                "name": "Visual"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Label",
+                                            "textContent": "Ad"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "Trailing Content",
+                                "children": [
+                                  {
+                                    "name": "Trail content row 1",
+                                    "children": [
+                                      {
+                                        "name": "ChevronRight"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Trail content row 2",
+                                    "children": [
+                                      {
+                                        "name": "Text",
+                                        "textContent": "{Text}"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "Trail content row 3",
+                                    "children": [
+                                      {
+                                        "name": "Tag",
+                                        "children": [
+                                          {
+                                            "name": "Wrapper",
+                                            "children": [
+                                              {
+                                                "name": "Visual"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "Label",
+                                            "textContent": "Label"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Buttons",
+                    "children": [
+                      {
+                        "name": "Yalla! ",
+                        "children": [
+                          {
+                            "name": "Icon wrapper",
+                            "children": [
+                              {
+                                "name": "Icon"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "Yalla!"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Reserve a ride",
+                        "children": [
+                          {
+                            "name": "Leading content wrapper",
+                            "children": [
+                              {
+                                "name": "_Leading content",
+                                "children": [
+                                  {
+                                    "name": "Icon"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Label",
+                            "textContent": "now"
+                          },
+                          {
+                            "name": "Trailing icon wrapper",
+                            "children": [
+                              {
+                                "name": "Icon"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Home Indicator",
+                    "children": [
+                      {
+                        "name": "Home Indicator"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "totalNodes": 829,
+    "componentCount": 0,
+    "hasText": true
+  }
+}
