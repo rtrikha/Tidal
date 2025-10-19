@@ -4,19 +4,28 @@ Reset Knowledge Base and Re-ingest All Files
 Wipes all data and starts fresh to avoid duplicates
 """
 
-import os
 import requests
 import json
 import time
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Configuration
 MINDSDB_HOST = "localhost"
 MINDSDB_PORT = 47334
 MINDSDB_SQL_URL = f"http://{MINDSDB_HOST}:{MINDSDB_PORT}/api/sql/query"
 
-# Your OpenAI API Key - load from environment variable
+# Your OpenAI API Key from environment
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+
+if not OPENAI_API_KEY:
+    print("❌ Error: OPENAI_API_KEY not found in environment variables")
+    print("   Please set it in rag_system/.env file")
+    exit(1)
 
 def execute_sql(query):
     """Execute SQL query against MindsDB"""
