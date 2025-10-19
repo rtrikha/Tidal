@@ -1,0 +1,143 @@
+Careem Plus: Add subscription on Ride
+Last updated date 19.08.2025
+Problem statement
+The release of Flywheel 1.0 in December 2023 has been a successful milestone for Careem Plus and
+Ride hailing teams with first customized experiences for non-members on ride. This has been
+complemented further in December 2024 when we released improved customization (potential
+savings), more seamless experience (bottom-sheet), and even aggressive new tactic (Intercept).
+Those two milestones allowed us to significantly increase member penetration on ride from 12.5% in
+October 2023 to 21.8% in June 2025 (on Hala, from 13% to 21.9%). Even if this is still a solid
+achievement, we didn’t yet crack the huge opportunity on the ride hailing base. Hence, the clear
+problem to solve: How might we increase Careem Plus penetration in the ride hailing base ? is the
+natural continuity from the work done in the past.
+Customer problem
+- As a customer, I still don’t fully understand the benefits which I can unlock by subscribing to
+Careem Plus
+- As a product, with recent RUMI launch, we do believe we slightly degraded the experience as
+we don’t communicate anymore potential savings through the ride booking funnel
+- As a customer, I don’t want my journey to be interrupted before booking a ride, but still
+interested by subscribing if there is a seamless option to do so
+Hypothesis
+We believe that building a seamless experience for ride users to easily subscribe to Careem Plus while
+booking a ride will boost drastically Careem Plus conversion, and support membership penetration in
+ride and Hala base in Dubai, and other regions then.
+Strategic alignment
+- Strategy:
+- Be clearer about Careem Plus value proposition in the booking flow
+- Offer a seamless experience to activate Careem Plus while booking a ride
+- Complement with delightful gratification/unlock experiences
+- Metric:
+- Ride penetration: Tracking Careem Plus penetration on ride base
+- Hala penetration: Tracking Careem Plus penetration on hala base
+- % throughput: Tracking the conversion % of users eligible for new experience
+- Tactics:
+- Build new experiences on verify to communicate about Careem Plus
+- Allow users to seamlessly add subscription to their current ride booking (Checkbox)
+- Make sure users feel rewarded instantly when interacting with new experience
+- Ensure users don’t drop subscription while booking a ride (regret experience)
+- Sizing/Opportunity
+- On daily basis approximately, 65k unique users booking a ride or hala in Dubai
+- The Add to basket conversion rate on Food is around 1.65-1.8% (2024 data).
+- Applying the same number is a daily acquisition of 1,170 customers. But conversion
+should be less, we could keep 0.8%, this goes as 520/daily
+- We should compare this with the current daily net on Ride, and keep the difference.
+- Hypothesis is extra 220 (current would be around 200/day), so extra 2.6k
+Supporting observation
+Add from research
+CPlus X Rides Cross-sell Insights
+Product tactics
+Strategy Details
+Entry Point & Placement a. Booking Flow Injection: Show an “Add Careem Plus & save AED
+X on this ride” banner right before ride confirmation (verify)
+b. Price Comparison Nudge: Show two options:
+i. “Confirm Ride: AED 40”
+ii. “Confirm Ride with Plus: AED 19/month + AED 35
+(today)” → Immediate savings is visible.
+c. One-Tap Upgrade: Make it just a single tap to enable Plus and
+complete payment with the ride.
+Messaging & Value Props a. Instant Gratification: “Get AED X back on this ride if you join
+now.”
+b. Stacking Value: Highlight ride + future savings (e.g., “Save AED 5
+now + up to AED 150 monthly on rides, food & more”).
+c. Loss Aversion: “Without Plus, you’ll pay AED 40. With Plus, it’s
+AED 35. Why pay more?”
+Conversion tactics a. Auto-apply Trial: Default to a free trial if eligible (e.g., “Try Plus
+free, save AED 5 instantly”).
+b. Time-bound Nudge: “Available only for this ride – unlock Plus
+now to save instantly.”
+c. Social Proof: “Thousands of riders save on every trip with Plus.”
+d. Cash bookings: Nudge users to switch / add digital payment
+method and unlock extra incentive
+Frictionless payment a. Single Checkout Flow: Combine ride payment + subscription
+signup in one step.
+b. Carrier Billing / Wallet Balance: Deduct subscription from the
+same payment method as the ride for simplicity.
+c. Grace Period Option: Allow subscription sign-up to be
+retroactively applied if the payment fails (reduce drop-offs).
+Post-Signup Delight
+a. Instant Confirmation: Show “AED X saved on this ride thanks to
+Plus.”
+b. Personalized First Month Summary: Track and show value built
+up (“You already saved AED 20 in your first 3 rides”).
+c. Cross-Vertical Nudges: After ride, highlight food/grocery
+benefits → expand habit quickly.
+Risks & Guardrails a. Avoid Over-Nagging: Show this offer selectively (e.g., 1 out of 3
+rides) to avoid banner blindness.
+b. Transparent Cancellation: Make it clear “Cancel anytime before
+renewal to avoid charge” → builds trust.
+c. Fairness: Ensure existing Plus members aren’t confused by
+seeing non-relevant prompts.
+Edge cases a. Cancelation: In case of user canceling the ride, we should
+inform user subscription will be canceled immediately and
+benefit will not apply of course.
+b. Ride payment failure: In case payment failed post ride
+completion, we should cancel immediately subscription and
+not give benefit. User to be informed and redirected to
+Careem Plus sign up experience ?
+Detailed Requirements for Engineering Teams (User Stories & Acceptance Criteria - MVP only
+- If user is not subscribed to Careem Plus in a selected region, user should be eligible to add
+subscription to their current booking
+- User should be able to see a Add to Booking experience on Verify
+- We should communicate to user Plus details on membership (trial + price) and benefit which
+can be unlocked instant
+- Once user adds membership to booking, user should get a confirmation message such as
+Benefit is going to apply on this ride + membership will start on verify
+- Once user added Careem Plus, member experience on verify to show
+- If user is using selected payment method on this ride booking, experience to not show, and
+we could show instead a nudge for user to switch
+- Not in scope for MVP: Cash, Apple Pay
+- If user selects a CCT not eligible, the experience should not show
+- Once user pressing yallah with Plus added, user should see welcome experience while waiting
+for the captain to be found
+- Subscription will start and AED 1 charge/refund on pressing yallah, and ride payment will
+happen when ride completed
+- If a user cancels the ride or captain cancels the ride, user should be able to go back to verify
+and the Plus experience should be auto-ticked
+- If payment fails for that selected ride on which Plus has been unlocked, the benefit will still be
+given, and membership should remain active. This will be an underpayment on Ride to be
+solved
+Designs (wireframe)
+https://www.figma.com/design/TCeTiDqs7Diow40tZhjg6G/Rumi--Booking-Flow---Production?node-id=1582 9-36783 ------------------------------
+Success metrics and experiment plan
+Success metrics
+1. % throughput: Tracking the conversion % of users eligible for new experience
+2. OPU post subscription: Tracking the average number of orders on platform post subscription
+(vs pre),
+- % retention: Tracking the retention % of members (first renewal) from members
+acquired through this new experience
+Constraining metrics
+Health Metric:
+Experiment plan
+Risks
+Go to market plan
+Mountain peaks
+Market Planned to release? Rationale
+Dubai Yes
+Abu Dhabi No
+KSA No
+Jordan Yes
+Support plan (Care)
+Marketing & PR
+N/A
+Sign-off
+I have sent this PRD to my sub-domain lead, and Prd legal slack channel for PRD reviews (includes sub-domain leads, Legal, Tax and Accounting) once drafted and aligned with my cross-functional team

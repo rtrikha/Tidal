@@ -1,0 +1,127 @@
+Careem Plus | Q4 Product —
+Seamless Growth, Lasting Loyalty
+“Careem Plus is becoming the region’s most seamless and rewarding membership — embedded across rides,
+food, groceries, and more to deliver effortless, personalized value every day. With refreshed
+branding, frictionless sign-ups, differentiated non-member experiences, trusted recovery flows,
+and an expanding e& partnership, Careem Plus is set to be the default way to experience Careem.”
+Your latest update
+Q3 Roadmap Spillover
+Priority Pillar Initiative Lead Tribe Lead POC PRD JIRA Status Customer
+launch Confidence High-level update
+1 Retention Savings awareness and celebration Careem Plus Martin 1 Pager SUB-7701 Release ongoing
+Early October High Live on latest customer app for selected tigers
+Configuration ongoing to launch first experiments
+2 Acquisition Longer subscription + Renewal service Phase 3 Careem Plus Martin PRD
+Link SUB-8501 Release ongoing
+12th October (phase 2) High MVP Live | Phase 1: Ready to go live
+Phase 2: 13th October | Phase 3: End October
+3 Retention Delightful member experience services B2B - Card prioritization on checkout Pay Anmol PRD
+Link SUB-7049 Testing 8th October High
+Q4 Roadmap High-level view
+Priority Pillar Initiative Lead Tribe Lead POC PRD JIRA Status Customer
+launch Confidence High-level update
+1 All New Careem Plus branding (Standard) Careem Plus Martin PRD SUB-9658 Tech
+alignment Mid Jan 26 High Tech execution plan in progress - plan is to start next week
+2 Acquisition Upsell Plus in Ride (1-click) Careem Plus Martin PRD Tech alignment Dec 25 High Design in progress
+Pending ride estimation
+3 Acquisition Upsell Plus in Food (Auto-apply, Plus on cash orders, Widget position)
+Careem Plus Food
+Martin Saurav PRD SUB-966
+Ready for execution Dec 25 High
+4 Acquisition Upsell Plus in Quik (1-click) Quik Nia PRD GRO-23157 Ready for execution Nov 25 Medium Pending Vertical to share ETA
+5 Acquisition Upsell Plus in Pay (1-click) Pay AG PRD Design Nov 25 Medium Pending Vertical to share ETA
+6 Acquisition Plus Retroactive Cashback Claim Careem Plus Martin PRD SUB-9661 Tech
+alignment Nov 25 High RFC in progress
+7 Retention Recovery experiences on Plus Wallet Snegdha PRD Product discovery Dec 25 Medium
+8 Acquisition e& partnership: Phase 2 Careem Plus Identity
+Martin Shariq PRD SUB-9662
+Ready for execution Dec 25 High Product alignment ongoing for timeline
+9 Engagement Profitability | NR |Partner monetization : Additional fees Pay AG TBC Dec 25 Medium
+The Q4 story
+Plus Identity
+Plus is Violet & Gold
+In collaboration with Studio, we’ve aligned on the new logo and colors for Plus and Plus Gold
+• A new logo system with lockups, badges and tags for the app as well as support for OOH.
+• Introduced violet for the standard plan and Gold for the premium tier.
+Next steps
+• Building in collaboration with central Engg
+• Launching in Q4
+• Planning for a Plus Week to drive launch
+awareness for launch
+Plus Identity
+New experiences snapshot
+Always-On Plus Visibility: increase program
+consideration
+Discovery amplification
+Be more aggressive with users if we believe it’s a no brainer to
+be on Careem Plus
+Seamless auto-upgrade
+Communicate savings lost for users unclicking upsell exp
+Regret trigger
+Nudging cash users to unlock Careem Plus savings at
+checkout Switch & Save
+Upsell multiplier
+Scale existing Food tactics on Ride, Quik, and Remittances
+From Nudge to No-Brainer: The Upsell Playbook
+Driving Careem Plus growth through upsell and visibility
+From Nudge to No-Brainer: The Upsell Playbook
+Driving recurring adoption through clarity, context, and simplicity
+Current landscape +19,1 k users | 7 days no commitment (NTP) + 5k users | 12 months trial e& Higher activation rate among all plans Lowest retention rate so far Average 3-4% retention
+Customer & Business problem
+Lack of nudges and visibility to enable recurring Existing flow unclear and too complex Low adoption of recurring plan Weak e2e funnel growth
+Prominent “Enable Auto-Renewal” banner in Careem Home page, and nudges via push/email/SMS
+Single toggle (on/off) for recurring with instant AED 1 auth/release to capture card, with simplified UX copy
+explaining what happens when enabled
+Toggle in basket/checkout, and reminders (with
+Be louder & clearer
+Make it Seamless
+Leverage context
+Strategy & Tactics
+Improve potential savings communication experience to improve awareness and interest
+Build an actionable and rewards driven experience to boost conversion
+Strategy
+Tactics
+Be transparent with customers by
+communicating more vs a single number
+“Gamify” the experience for a customer to unlock
+value if signing-up to Careem Plus
+Ensure customers can easily link such value missed to
+their past activities
+Invest into limited-time tactics to improve further
+conversion
+From Missed Savings to Must-Have: Cashback claim
+Increase visibility of failed payments Strengthen communication to prompt timely action
+Enable passive recovery mechanisms Apply controlled deterrents where necessary
+Strategy
+Tactics
+Show real-time payment failure notifications in-app
+& via push/SMS
+Integrate auto-deductions from
+rides, food, and groceries for underpayments /
+payment failure
+Offer one-click repayment options across
+Careem touchpoints
+Pilot deterrents (e.g., temporary feature
+restrictions) for repeated failures
+From Revenue Leakage to Smart Recovery
+Built with AI (Figma Make)
+Activation
+e& <> Careem Integration
+Prioritize partnership offers first on Careem
+Personalize Careem Plus sign-up offers
+Add retry option for activation failures on e&
+Fix OTP auto-fill (TBC)
+MSISDN recycling
+Enhance SFTP daily snapshot product_id, channel
+Reduce OTP validity from 10 to 2 minutes
+e& plan management
+Send SMS before renewal (push now)
+Send SMS on subscription cancelation
+Scaling partnerships
+Update web-view for multi-partner support
+Add flexible sections for partner offers
+Minor UI updates to Careem web-view (e&)
+Opportunity: Orange Telecom Jordan (20k)
+From Partnership to Activation: Seamless Growth
+Scaling e& for seamless growth and partnerships
+Thank you!
