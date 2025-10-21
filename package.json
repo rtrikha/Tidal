@@ -17,6 +17,7 @@
     "cleanup": "npx tsx scripts/cleanup-missing.ts",
     "reset": "npx tsx scripts/reset-and-reingest.ts",
     "ui": "cd tidal_ui && npm run dev -- --port 3001",
-    "rules": "open AGENT_RULES.md || code AGENT_RULES.md || cat AGENT_RULES.md"
+    "rules": "open AGENT_RULES.md || code AGENT_RULES.md || cat AGENT_RULES.md",
+    "kill": "./kill-ports.sh"
   }
 }
