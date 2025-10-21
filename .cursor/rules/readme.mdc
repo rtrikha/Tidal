@@ -1,0 +1,5 @@
+---
+description: never make any readme or quick guide unless asked to
+globs:
+alwaysApply: true
+---

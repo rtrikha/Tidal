@@ -1,5 +1,22 @@
 {
+  "name": "tidal-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "scripts",
+    "tidal_ui"
+  ],
   "devDependencies": {
     "tsx": "^4.20.6"
+  },
+  "scripts": {
+    "dev": "npm run dev --workspace=tidal_ui -- --port 3001",
+    "ingest": "npx tsx scripts/ingest.ts",
+    "verify": "npx tsx scripts/verify-data.ts",
+    "list": "npx tsx scripts/list-documents.ts",
+    "cleanup": "npx tsx scripts/cleanup-missing.ts",
+    "reset": "npx tsx scripts/reset-and-reingest.ts",
+    "ui": "cd tidal_ui && npm run dev -- --port 3001",
+    "rules": "open AGENT_RULES.md || code AGENT_RULES.md || cat AGENT_RULES.md"
   }
 }
