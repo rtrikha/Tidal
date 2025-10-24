@@ -33,6 +33,37 @@ if (!SUPABASE_URL || !SUPABASE_KEY || !OPENAI_KEY) {
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 const openai = new OpenAI({ apiKey: OPENAI_KEY });
 
+/**
+ * Ensure database tables exist with proper schema
+ */
+async function ensureTablesExist() {
+  try {
+    // Check if documents table exists
+    const { error: docsError } = await supabase
+      .from('documents')
+      .select('id')
+      .limit(1);
+    
+    if (docsError && docsError.code === 'PGRST116') {
+      console.log('❌ Documents table does not exist - please set up your database schema first');
+      process.exit(1);
+    }
+    
+    // Check if chunks table exists
+    const { error: chunksError } = await supabase
+      .from('chunks')
+      .select('id')
+      .limit(1);
+    
+    if (chunksError && chunksError.code === 'PGRST116') {
+      console.log('❌ Chunks table does not exist - please set up your database schema first');
+      process.exit(1);
+    }
+  } catch (err) {
+    console.log('ℹ️  Skipping table validation (tables may need manual setup)');
+  }
+}
+
 // Config
 const STORAGE_BUCKET = 'tidal-docs';
 const CHUNK_SIZE = 1000; // characters (approximate)
@@ -252,40 +283,54 @@ async function ingestFileFromStorage(
       return { status: 'skipped', chunks: 0 };
     }
     
-    // Extract title from FOLDER name (not file name) for designs
+    // Extract title, team_name and page from FOLDER structure
     // This avoids duplicates like "button.json" and "button.png" 
     const pathParts = storagePath.split('/');
     const fileName = pathParts.pop()!;
     let title: string;
+    let teamName: string | null = null;
     
     if (type === 'design' && pathParts.length > 1) {
-      // Use folder name for designs (e.g., "button_screen" instead of "button_screen.json")
-      const folderName = pathParts[pathParts.length - 1];
+      // page_name (documents) = 2 levels back from file (category)
+      // Example: .../Buttons_Counter/counter_buttons_34374:99994/data.json
+      //          page_name = Buttons_Counter
       
-      // If folder name matches filename (common case), just use it
-      let fileBaseName = fileName.replace(/\.(txt|md|json)$/, '');
+      // 2 levels back from file = page_name (category)
+      const categoryFolderName = pathParts.length >= 2 ? pathParts[pathParts.length - 2] : '';
+      const cleanCategoryName = categoryFolderName.replace(/_\d+:\d+$/, '');
       
-      // Remove Figma node IDs (e.g., "button_123:456" → "button")
-      // Pattern: _[digits]:[digits] at the end
-      fileBaseName = fileBaseName.replace(/_\d+:\d+$/, '');
-      
-      // Also clean up folder name but KEEP the node ID for uniqueness
-      // We'll use it as a suffix if there are duplicates
-      const nodeIdMatch = folderName.match(/_(\d+:\d+)$/);
-      const cleanFolderName = folderName.replace(/_\d+:\d+$/, '');
-      
-      if (cleanFolderName === fileBaseName) {
-        // If we have a node ID, append it to ensure uniqueness
-        title = nodeIdMatch ? `${cleanFolderName} (${nodeIdMatch[1]})` : cleanFolderName;
-      } else if (fileBaseName === 'data' || fileBaseName === 'index') {
-        // Generic filenames - use folder name with node ID for uniqueness
-        title = nodeIdMatch ? `${cleanFolderName} (${nodeIdMatch[1]})` : cleanFolderName;
+      // Check if we have a team name (5+ parts means team folder exists)
+      if (pathParts.length >= 5 && pathParts[0] === 'designs') {
+        teamName = pathParts[1].replace(/_\d+:\d+$/, ''); // Team name
+        title = cleanCategoryName; // 2 levels back = category (e.g., Buttons_Counter)
+        
+        console.log(`     📁 Design hierarchy with team detected:`);
+        console.log(`        Team: ${teamName}`);
+        console.log(`        Document: ${title}`);
+        console.log(`        Full path: ${storagePath}`);
       } else {
-        // Different names - include both for clarity
-        title = nodeIdMatch ? `${cleanFolderName}/${fileBaseName} (${nodeIdMatch[1]})` : `${cleanFolderName}/${fileBaseName}`;
+        // Structure: designs/ProjectName/ScreenName (no team folder)
+        const parentFolderName = pathParts[pathParts.length - 2];
+        const cleanParentName = parentFolderName.replace(/_\d+:\d+$/, '');
+        title = cleanParentName;
+        
+        console.log(`     📁 Design hierarchy detected:`);
+        console.log(`        Document: ${title}`);
+      }
+    } else if (type === 'prd' && pathParts.length >= 3 && pathParts[0] === 'prds') {
+      // Support team structure for PRDs too: prds/TeamName/file.txt
+      if (pathParts.length >= 3) {
+        teamName = pathParts[1].replace(/_\d+:\d+$/, '');
+        title = fileName.replace(/\.(txt|md|json)$/, '');
+        
+        console.log(`     📁 PRD with team detected:`);
+        console.log(`        Team: ${teamName}`);
+        console.log(`        Document: ${title}`);
+      } else {
+        title = fileName.replace(/\.(txt|md|json)$/, '');
       }
     } else {
-      // Use filename for PRDs
+      // Use filename for simple structures
       title = fileName.replace(/\.(txt|md|json)$/, '');
     }
     
@@ -316,7 +361,7 @@ async function ingestFileFromStorage(
       // Update existing document
       await supabase
         .from('documents')
-        .update({ sha256: hash, title, type, image_url: imageUrl })
+        .update({ sha256: hash, page_name: title, type, image_url: imageUrl, team_name: teamName })
         .eq('id', existingDoc.id);
       
       // Delete old chunks
@@ -334,8 +379,9 @@ async function ingestFileFromStorage(
           storage_path: storagePath,
           sha256: hash,
           type,
-          title,
+          page_name: title,
           image_url: imageUrl,
+          team_name: teamName,
         })
         .select('id')
         .single();
@@ -344,7 +390,8 @@ async function ingestFileFromStorage(
       docId = doc.id;
     }
     
-    // Insert chunks
+    // Insert chunks directly to document (no page_id)
+    console.log(`     📄 Inserting ${chunks.length} chunks...`);
     const chunkRows = chunks.map((content, i) => ({
       document_id: docId,
       chunk_index: i,
@@ -358,6 +405,8 @@ async function ingestFileFromStorage(
     
     if (chunkError) throw chunkError;
     
+    console.log(`     ✅ Created ${chunkData.length} chunks`);
+    
     // Insert embeddings
     const embeddingRows = chunkData.map((chunk, i) => ({
       chunk_id: chunk.id,
@@ -370,7 +419,7 @@ async function ingestFileFromStorage(
     
     if (embError) throw embError;
     
-    return { status: 'ingested', chunks: chunks.length };
+    return { status: 'ingested', chunks: chunkData.length };
   } catch (error: unknown) {
     if (error instanceof Error) {
       console.error(`\n  ❌ Error: ${error.message}`);
@@ -398,6 +447,9 @@ async function main() {
     console.error('❌ Could not connect to Supabase. Please check your connection and try again.\n');
     process.exit(1);
   }
+
+  // Ensure database tables exist
+  await ensureTablesExist();
   
   // List files in storage recursively
   console.log('🔍 Scanning Supabase Storage...\n');

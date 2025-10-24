@@ -47,6 +47,16 @@ async function main() {
   if (docError) console.error('Error:', docError);
   else console.log('✅ Documents deleted');
   
+  console.log('💾 Reclaiming database space...');
+  const { error: vacuumError } = await supabase.rpc('execute_vacuum');
+  
+  if (vacuumError) {
+    console.log('ℹ️  VACUUM not available via RPC - run manually in SQL Editor:');
+    console.log('   VACUUM FULL;');
+  } else {
+    console.log('✅ Database space reclaimed');
+  }
+  
   console.log('\n✅ Database cleared! Now run: npm run ingest\n');
 }
 
