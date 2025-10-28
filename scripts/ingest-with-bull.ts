@@ -1,0 +1,159 @@
+#!/usr/bin/env tsx
+/**
+ * Ingestion Producer for Tidal RAG
+ * 
+ * Discovers files from Supabase Storage and queues ingestion jobs in Bull.
+ * Make sure to have the worker running in another terminal: npm run worker
+ */
+
+import { createClient } from '@supabase/supabase-js';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+import { waitForSupabaseWakeup } from './retry-utils.js';
+import { createIngestionQueue } from './queue-config.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load environment variables
+dotenv.config({ path: path.join(__dirname, '../rag_system/.env') });
+
+const SUPABASE_URL = process.env.SUPABASE_URL!;
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+
+if (!SUPABASE_URL || !SUPABASE_KEY) {
+  console.error('❌ Missing environment variables');
+  process.exit(1);
+}
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+const STORAGE_BUCKET = 'tidal-docs';
+
+/**
+ * Recursively list all files in Supabase Storage
+ */
+async function listStorageFilesRecursive(folderPath: string = ''): Promise<string[]> {
+  console.log(`  🔍 Scanning: ${folderPath || 'root'}`);
+
+  const { data, error } = await supabase.storage
+    .from(STORAGE_BUCKET)
+    .list(folderPath, {
+      limit: 1000,
+      sortBy: { column: 'name', order: 'asc' }
+    });
+
+  if (error) {
+    console.error(`  ❌ Error listing ${folderPath}:`, error);
+    return [];
+  }
+
+  if (!data || data.length === 0) {
+    console.log(`  📭 Empty: ${folderPath}`);
+    return [];
+  }
+
+  const files: string[] = [];
+
+  for (const item of data) {
+    const itemPath = folderPath ? `${folderPath}/${item.name}` : item.name;
+
+    const hasMetadata = item.metadata !== null && typeof item.metadata === 'object';
+    const hasFileExtension = item.name.match(/\.(txt|md|json|ts|js|py|go|java|cpp|c|h|rb|php|rs|sh)$/i);
+
+    if (!hasMetadata || item.id === null) {
+      console.log(`  📁 Folder: ${item.name}`);
+      const subFiles = await listStorageFilesRecursive(itemPath);
+      files.push(...subFiles);
+    } else if (hasFileExtension) {
+      console.log(`  📄 File: ${item.name}`);
+      files.push(itemPath);
+    }
+  }
+
+  return files;
+}
+
+async function main() {
+  console.log('\n' + '='.repeat(60));
+  console.log('📋 Tidal RAG - Queueing Ingestion Jobs');
+  console.log('='.repeat(60) + '\n');
+
+  // Wait for Supabase
+  const isAwake = await waitForSupabaseWakeup(supabase);
+  if (!isAwake) {
+    console.error('❌ Could not connect to Supabase. Please check your connection.\n');
+    process.exit(1);
+  }
+
+  // List files from storage
+  console.log('🔍 Scanning Supabase Storage...\n');
+  const prdFiles = await listStorageFilesRecursive('prds');
+  const designFiles = await listStorageFilesRecursive('designs');
+  const codeFiles = await listStorageFilesRecursive('code');
+
+  const allFiles = [
+    ...prdFiles.map(f => ({ path: f, type: 'prd' as const })),
+    ...designFiles.map(f => ({ path: f, type: 'design' as const })),
+    ...codeFiles.map(f => ({ path: f, type: 'code' as const }))
+  ];
+
+  console.log(`\n✅ Found ${allFiles.length} files (${prdFiles.length} PRDs, ${designFiles.length} designs, ${codeFiles.length} code files)\n`);
+
+  if (allFiles.length === 0) {
+    console.log('ℹ️  No files to ingest');
+    process.exit(0);
+  }
+
+  // Create queue and add jobs
+  const queue = createIngestionQueue();
+
+  console.log('📤 Queuing jobs...\n');
+
+  let queued = 0;
+
+  for (let i = 0; i < allFiles.length; i++) {
+    const file = allFiles[i];
+    const fileName = file.path.split('/').pop();
+
+    try {
+      await queue.add(
+        {
+          storagePath: file.path,
+          type: file.type,
+          jobIndex: i + 1,
+          totalJobs: allFiles.length
+        },
+        {
+          attempts: 3,
+          backoff: {
+            type: 'exponential',
+            delay: 2000
+          },
+          removeOnComplete: false,
+          removeOnFail: false
+        }
+      );
+
+      queued++;
+      console.log(`  ✅ Queued: ${fileName}`);
+    } catch (err) {
+      console.error(`  ❌ Failed to queue ${fileName}:`, err);
+    }
+  }
+
+  console.log('\n' + '='.repeat(60));
+  console.log('📊 Queue Status');
+  console.log('='.repeat(60));
+  console.log(`✅ Queued: ${queued}/${allFiles.length} files`);
+  console.log(`\n🎯 Make sure worker is running: npm run worker`);
+  console.log('🔄 Jobs will be processed with automatic retry on failure\n');
+
+  // Close queue connection
+  await queue.close();
+}
+
+main().catch((err) => {
+  console.error('💥 Error:', err);
+  process.exit(1);
+});
