@@ -317,33 +317,30 @@ async function ingestFile(
     const hash = sha256(content);
     console.log(`   🔐 Content hash: ${hash.substring(0, 8)}...`);
 
-    const alreadyIngested = await isAlreadyIngested(storagePath, hash, type);
-    if (alreadyIngested) {
-      console.log(`   ⏭️  File already ingested (same hash AND has chunks) - skipping`);
-      return { status: 'skipped', chunks: 0 };
-    } else {
-      // Hash matches but no chunks - need to re-ingest
-      const { data: existingRecord } = type === 'prd' 
-        ? await supabase.from('prds').select('id').eq('storage_path', storagePath).maybeSingle()
-        : await supabase.from('designs').select('id').eq('storage_path', storagePath).maybeSingle();
-      
-      if (existingRecord) {
-        console.log(`   🔄 Hash matches but no chunks found - re-ingesting to create chunks`);
-      }
-    }
-
+    // Extract path information first (needed for backfill check)
     const pathParts = storagePath.split('/');
     const fileName = pathParts.pop()!;
     let title: string;
     let teamName: string | null = null;
+    let projectName: string | null = null;
+    let fileNameFromPath: string | null = null;
 
     if (type === 'design' && pathParts.length > 1) {
-      const categoryFolderName = pathParts.length >= 2 ? pathParts[pathParts.length - 2] : '';
-      const cleanCategoryName = categoryFolderName.replace(/_\d+:\d+$/, '');
-
-      if (pathParts.length >= 5 && pathParts[0] === 'designs') {
+      // Check if we have full hierarchy (designs/team/project/file/page/screen)
+      // After pop(), pathParts.length >= 6 means full hierarchy
+      if (pathParts.length >= 6 && pathParts[0] === 'designs') {
+        teamName = pathParts[1].replace(/_\d+:\d+$/, ''); // Team name
+        projectName = pathParts[2].replace(/_\d+:\d+$/, ''); // Project name
+        fileNameFromPath = pathParts[3].replace(/_\d+:\d+$/, ''); // File name
+        title = pathParts[4].replace(/_\d+:\d+$/, ''); // Page name
+      } else if (pathParts.length >= 5 && pathParts[0] === 'designs') {
+        // Legacy structure
         teamName = pathParts[1].replace(/_\d+:\d+$/, '');
+        const categoryFolderName = pathParts.length >= 2 ? pathParts[pathParts.length - 2] : '';
+        const cleanCategoryName = categoryFolderName.replace(/_\d+:\d+$/, '');
         title = cleanCategoryName;
+        projectName = pathParts[2].replace(/_\d+:\d+$/, ''); // Project name
+        fileNameFromPath = pathParts[3].replace(/_\d+:\d+$/, ''); // File name
       } else {
         const parentFolderName = pathParts[pathParts.length - 2];
         const cleanParentName = parentFolderName.replace(/_\d+:\d+$/, '');
@@ -365,6 +362,40 @@ async function ingestFile(
       }
     } else {
       title = fileName.replace(/\.(txt|md|json|ts|js|py|go|java|cpp|c|h|rb|php|rs|sh)$/, '');
+    }
+
+    const alreadyIngested = await isAlreadyIngested(storagePath, hash, type);
+    
+    // First, check if record exists and if we need to backfill metadata
+    if (type === 'design') {
+      const { data: existingDoc } = await supabase
+        .from('designs')
+        .select('id, sha256, project_name, file_name')
+        .eq('storage_path', storagePath)
+        .maybeSingle();
+      
+      if (existingDoc) {
+        // Record exists - check if we need to backfill
+        if (!existingDoc.project_name || !existingDoc.file_name) {
+          console.log(`   🔄 Backfilling project_name/file_name for existing record`);
+          const updateData: any = {};
+          if (!existingDoc.project_name && projectName) updateData.project_name = projectName;
+          if (!existingDoc.file_name && fileNameFromPath) updateData.file_name = fileNameFromPath;
+          
+          if (Object.keys(updateData).length > 0) {
+            await supabase
+              .from('designs')
+              .update(updateData)
+              .eq('id', existingDoc.id);
+            console.log(`   ✅ Backfilled metadata: ${JSON.stringify(updateData)}`);
+          }
+        }
+      }
+    }
+    
+    if (alreadyIngested) {
+      console.log(`   ⏭️  File already ingested (same hash AND has chunks) - skipping`);
+      return { status: 'skipped', chunks: 0 };
     }
 
     const imagePath = await findMatchingImage(storagePath);
@@ -447,7 +478,16 @@ async function ingestFile(
       if (existingDoc) {
         await supabase
           .from('designs')
-          .update({ sha256: hash, page_name: title, type, image_url: imageUrl, team_name: teamName, figma_url: figmaUrl })
+          .update({ 
+            sha256: hash, 
+            page_name: title, 
+            type, 
+            image_url: imageUrl, 
+            team_name: teamName,
+            project_name: projectName,
+            file_name: fileNameFromPath,
+            figma_url: figmaUrl 
+          })
           .eq('id', existingDoc.id);
 
         await supabase
@@ -466,6 +506,8 @@ async function ingestFile(
             page_name: title,
             image_url: imageUrl,
             team_name: teamName,
+            project_name: projectName,
+            file_name: fileNameFromPath,
             figma_url: figmaUrl,
           })
           .select('id')

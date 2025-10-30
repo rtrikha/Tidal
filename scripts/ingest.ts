@@ -383,34 +383,47 @@ async function ingestFileFromStorage(
     
     const hash = sha256(content);
     
-    // Check if already ingested with same hash
-    if (await isAlreadyIngested(storagePath, hash, type)) {
-      return { status: 'skipped', chunks: 0 };
-    }
-    
-    // Extract title, team_name and page from FOLDER structure
-    // This avoids duplicates like "button.json" and "button.png" 
+    // Extract path information first (needed for backfill check)
     const pathParts = storagePath.split('/');
     const fileName = pathParts.pop()!;
     let title: string;
     let teamName: string | null = null;
+    let projectName: string | null = null;
+    let fileNameFromPath: string | null = null;
     
     if (type === 'design' && pathParts.length > 1) {
-      // page_name (documents) = 2 levels back from file (category)
-      // Example: .../Buttons_Counter/counter_buttons_34374:99994/data.json
-      //          page_name = Buttons_Counter
-      
-      // 2 levels back from file = page_name (category)
-      const categoryFolderName = pathParts.length >= 2 ? pathParts[pathParts.length - 2] : '';
-      const cleanCategoryName = categoryFolderName.replace(/_\d+:\d+$/, '');
-      
-      // Check if we have a team name (5+ parts means team folder exists)
-      if (pathParts.length >= 5 && pathParts[0] === 'designs') {
+      // Check if we have full hierarchy (designs/team/project/file/page/screen)
+      // After pop(), pathParts.length >= 6 means full hierarchy
+      if (pathParts.length >= 6 && pathParts[0] === 'designs') {
         teamName = pathParts[1].replace(/_\d+:\d+$/, ''); // Team name
-        title = cleanCategoryName; // 2 levels back = category (e.g., Buttons_Counter)
+        projectName = pathParts[2].replace(/_\d+:\d+$/, ''); // Project name
+        fileNameFromPath = pathParts[3].replace(/_\d+:\d+$/, ''); // File name
+        title = pathParts[4].replace(/_\d+:\d+$/, ''); // Page name (2 levels back from screen)
         
         console.log(`     📁 Design hierarchy with team detected:`);
         console.log(`        Team: ${teamName}`);
+        console.log(`        Project: ${projectName}`);
+        console.log(`        File: ${fileNameFromPath}`);
+        console.log(`        Page: ${title}`);
+        console.log(`        Full path: ${storagePath}`);
+      } else if (pathParts.length >= 5 && pathParts[0] === 'designs') {
+        // Legacy: designs/team/project/file/page (no screen folder level)
+        // Or: designs/team/page/screen (old structure)
+        teamName = pathParts[1].replace(/_\d+:\d+$/, ''); // Team name
+        const categoryFolderName = pathParts.length >= 2 ? pathParts[pathParts.length - 2] : '';
+        const cleanCategoryName = categoryFolderName.replace(/_\d+:\d+$/, '');
+        title = cleanCategoryName; // 2 levels back = category (e.g., Buttons_Counter)
+        
+        // For legacy, try to extract project and file from pathParts if available
+        if (pathParts.length >= 5) {
+          projectName = pathParts[2].replace(/_\d+:\d+$/, ''); // Project name
+          fileNameFromPath = pathParts[3].replace(/_\d+:\d+$/, ''); // File name
+        }
+        
+        console.log(`     📁 Design hierarchy with team detected (legacy):`);
+        console.log(`        Team: ${teamName}`);
+        console.log(`        Project: ${projectName}`);
+        console.log(`        File: ${fileNameFromPath}`);
         console.log(`        Document: ${title}`);
         console.log(`        Full path: ${storagePath}`);
       } else {
@@ -435,6 +448,39 @@ async function ingestFileFromStorage(
     } else {
       // Use filename for simple structures
       title = fileName.replace(/\.(txt|md|json|pdf)$/, '');
+    }
+    
+    // Check if already ingested with same hash
+    const alreadyIngested = await isAlreadyIngested(storagePath, hash, type);
+    
+    // Check if we need to backfill project_name/file_name even if already ingested
+    if (alreadyIngested && type === 'design') {
+      const { data: existingDoc } = await supabase
+        .from('designs')
+        .select('id, project_name, file_name')
+        .eq('storage_path', storagePath)
+        .maybeSingle();
+      
+      if (existingDoc && (!existingDoc.project_name || !existingDoc.file_name)) {
+        // Need to backfill - update metadata without re-creating chunks
+        console.log(`     🔄 Backfilling project_name/file_name for existing record`);
+        const updateData: Record<string, string> = {};
+        if (!existingDoc.project_name && projectName) updateData.project_name = projectName;
+        if (!existingDoc.file_name && fileNameFromPath) updateData.file_name = fileNameFromPath;
+        
+        if (Object.keys(updateData).length > 0) {
+          await supabase
+            .from('designs')
+            .update(updateData)
+            .eq('id', existingDoc.id);
+          console.log(`     ✅ Backfilled metadata: ${JSON.stringify(updateData)}`);
+        }
+        return { status: 'skipped', chunks: 0 };
+      }
+    }
+    
+    if (alreadyIngested) {
+      return { status: 'skipped', chunks: 0 };
     }
     
     // Look for matching image
@@ -519,7 +565,16 @@ async function ingestFileFromStorage(
         // Update existing document
         await supabase
           .from('designs')
-          .update({ sha256: hash, page_name: title, type, image_url: imageUrl, team_name: teamName, figma_url: figmaUrl })
+          .update({ 
+            sha256: hash, 
+            page_name: title, 
+            type, 
+            image_url: imageUrl, 
+            team_name: teamName,
+            project_name: projectName,
+            file_name: fileNameFromPath,
+            figma_url: figmaUrl 
+          })
           .eq('id', existingDoc.id);
         
         // Delete old chunks
@@ -540,6 +595,8 @@ async function ingestFileFromStorage(
             page_name: title,
             image_url: imageUrl,
             team_name: teamName,
+            project_name: projectName,
+            file_name: fileNameFromPath,
             figma_url: figmaUrl,
           })
           .select('id')
