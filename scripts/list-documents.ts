@@ -20,18 +20,30 @@ async function listAllDocuments() {
   console.log('🔌 Connecting to Supabase...');
   console.log(`   URL: ${process.env.SUPABASE_URL}`);
   
-  let docs;
-  let error;
+  let designDocs;
+  let prdDocs;
+  let designError;
+  let prdError;
   
   try {
-    const result = await supabase
-      .from('documents')
+    // Query designs table
+    const designResult = await supabase
+      .from('designs')
       .select('id, title, type, storage_path')
       .order('type')
       .order('title');
     
-    docs = result.data;
-    error = result.error;
+    designDocs = designResult.data || [];
+    designError = designResult.error;
+    
+    // Query prds table
+    const prdResult = await supabase
+      .from('prds')
+      .select('id, file_name, storage_path')
+      .order('file_name');
+    
+    prdDocs = prdResult.data || [];
+    prdError = prdResult.error;
   } catch (e) {
     console.error('\n❌ Connection Error:', e);
     console.log('\n💡 Troubleshooting:');
@@ -42,18 +54,18 @@ async function listAllDocuments() {
     return;
   }
   
-  if (error) {
-    console.error('❌ Database Error:', error);
-    return;
+  if (designError || prdError) {
+    console.error('❌ Database Error:', designError || prdError);
+    // Continue anyway to show what we have
   }
   
-  if (!docs || docs.length === 0) {
+  const designs = designDocs || [];
+  const prds = (prdDocs || []).map(p => ({ ...p, title: p.file_name, type: 'prd' }));
+  
+  if (designs.length === 0 && prds.length === 0) {
     console.log('No documents found.');
     return;
   }
-  
-  const prds = docs.filter(d => d.type === 'prd');
-  const designs = docs.filter(d => d.type === 'design');
   
   console.log(`📝 PRDs (${prds.length}):`);
   prds.forEach(d => {
@@ -67,7 +79,7 @@ async function listAllDocuments() {
     if (d.storage_path) console.log(`    Storage: ${d.storage_path}`);
   });
   
-  console.log(`\n✅ Total: ${docs.length} documents in database`);
+  console.log(`\n✅ Total: ${designs.length + prds.length} documents in database (${designs.length} designs, ${prds.length} PRDs)`);
   console.log('\n💡 These are what show up in @mentions in the UI\n');
 }
 

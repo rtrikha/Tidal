@@ -58,16 +58,34 @@ async function listStorageFilesRecursive(folderPath: string = ''): Promise<strin
   for (const item of data) {
     const itemPath = folderPath ? `${folderPath}/${item.name}` : item.name;
 
-    const hasMetadata = item.metadata !== null && typeof item.metadata === 'object';
-    const hasFileExtension = item.name.match(/\.(txt|md|json|ts|js|py|go|java|cpp|c|h|rb|php|rs|sh)$/i);
-
-    if (!hasMetadata || item.id === null) {
+    // Check if it's a file or folder
+    // In Supabase Storage: folders have id === null, files have an id
+    // However, we also check for file extensions to be sure
+    const hasFileExtension = item.name.match(/\.(txt|md|json|pdf|ts|js|py|go|java|cpp|c|h|rb|php|rs|sh)$/i);
+    
+    if (hasFileExtension) {
+      // Definitely a file (has extension)
+      console.log(`  📄 File: ${item.name}`);
+      files.push(itemPath);
+    } else if (item.id === null) {
+      // No ID = folder in Supabase Storage
       console.log(`  📁 Folder: ${item.name}`);
       const subFiles = await listStorageFilesRecursive(itemPath);
       files.push(...subFiles);
-    } else if (hasFileExtension) {
-      console.log(`  📄 File: ${item.name}`);
-      files.push(itemPath);
+    } else {
+      // Has ID but no extension - could be a file without extension or edge case
+      // Try recursing first (safer - if it's a folder, we'll find files inside)
+      // If it fails or returns nothing, it's likely a file without extension
+      console.log(`  ❓ Checking: ${item.name} (has ID but no extension)`);
+      const subFiles = await listStorageFilesRecursive(itemPath);
+      if (subFiles.length > 0) {
+        // It was a folder, got files
+        files.push(...subFiles);
+      } else {
+        // No files found inside, treat as file anyway (might be file without extension)
+        console.log(`  📄 Treating as file: ${item.name}`);
+        files.push(itemPath);
+      }
     }
   }
 
@@ -79,6 +97,18 @@ async function main() {
   console.log('📋 Tidal RAG - Queueing Ingestion Jobs');
   console.log('='.repeat(60) + '\n');
 
+  // Get custom path from command line argument
+  const customPath = process.argv[2];
+  
+  let paths: string[] = [];
+  if (customPath) {
+    console.log(`🎯 Custom path specified: ${customPath}`);
+    paths = [customPath];
+  } else {
+    console.log('📂 Using default paths: prds, designs, code\n');
+    paths = ['prds', 'designs', 'code'];
+  }
+
   // Wait for Supabase
   const isAwake = await waitForSupabaseWakeup(supabase);
   if (!isAwake) {
@@ -88,17 +118,30 @@ async function main() {
 
   // List files from storage
   console.log('🔍 Scanning Supabase Storage...\n');
-  const prdFiles = await listStorageFilesRecursive('prds');
-  const designFiles = await listStorageFilesRecursive('designs');
-  const codeFiles = await listStorageFilesRecursive('code');
+  
+  const allFiles: { path: string; type: 'prd' | 'design' | 'code' }[] = [];
 
-  const allFiles = [
-    ...prdFiles.map(f => ({ path: f, type: 'prd' as const })),
-    ...designFiles.map(f => ({ path: f, type: 'design' as const })),
-    ...codeFiles.map(f => ({ path: f, type: 'code' as const }))
-  ];
+  for (const scanPath of paths) {
+    const files = await listStorageFilesRecursive(scanPath);
+    
+    // Determine file type based on the full file path (not just scanPath)
+    // This handles nested folders correctly
+    allFiles.push(...files.map(f => {
+      let fileType: 'prd' | 'design' | 'code' = 'prd';
+      if (f.startsWith('designs/')) fileType = 'design';
+      else if (f.startsWith('code/')) fileType = 'code';
+      else if (f.startsWith('prds/')) fileType = 'prd';
+      // Fallback to scanPath if file path doesn't match standard prefixes
+      else {
+        if (scanPath.includes('design')) fileType = 'design';
+        else if (scanPath.includes('code')) fileType = 'code';
+        else fileType = 'prd';
+      }
+      return { path: f, type: fileType };
+    }));
+  }
 
-  console.log(`\n✅ Found ${allFiles.length} files (${prdFiles.length} PRDs, ${designFiles.length} designs, ${codeFiles.length} code files)\n`);
+  console.log(`\n✅ Found ${allFiles.length} files to ingest\n`);
 
   if (allFiles.length === 0) {
     console.log('ℹ️  No files to ingest');

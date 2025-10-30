@@ -40,7 +40,7 @@ async function main() {
   
   console.log('🗑️  Deleting all documents...');
   const { error: docError } = await supabase
-    .from('documents')
+    .from('designs')
     .delete()
     .neq('id', '00000000-0000-0000-0000-000000000000');
   

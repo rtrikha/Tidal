@@ -38,12 +38,29 @@ async function cleanupMissingFiles() {
   console.log('This will DELETE database records for files that don\'t exist in Storage.\n');
 
   // Get all documents from database
-  const { data: documents, error } = await supabase
-    .from('documents')
-    .select('id, storage_path, title, type');
+  // Try page_name first, fallback to title for compatibility
+  let documents = null;
+  let documentsError = null;
+  
+  const pageNameQuery = await supabase
+    .from('designs')
+    .select('id, storage_path, page_name, type');
+  
+  if (pageNameQuery.error && pageNameQuery.error.code === '42703') {
+    // Column 'page_name' doesn't exist, try 'title' (old schema)
+    const titleQuery = await supabase
+      .from('designs')
+      .select('id, storage_path, title, type');
+    
+    documents = titleQuery.data;
+    documentsError = titleQuery.error;
+  } else {
+    documents = pageNameQuery.data;
+    documentsError = pageNameQuery.error;
+  }
 
-  if (error) {
-    console.error('❌ Error fetching documents:', error);
+  if (documentsError) {
+    console.error('❌ Error fetching documents:', documentsError);
     return;
   }
 
@@ -72,7 +89,8 @@ async function cleanupMissingFiles() {
 
   console.log(`\n❌ Found ${missingFiles.length} orphaned database records:\n`);
   missingFiles.forEach((doc, i) => {
-    console.log(`${i + 1}. ${doc.title} (${doc.type})`);
+    const docName = (doc as any).page_name || (doc as any).title || 'Unknown';
+    console.log(`${i + 1}. ${docName} (${doc.type})`);
     console.log(`   Path: ${doc.storage_path}`);
   });
 
@@ -112,18 +130,21 @@ async function cleanupMissingFiles() {
 
       // Delete document
       const { error: deleteError } = await supabase
-        .from('documents')
+        .from('designs')
         .delete()
         .eq('id', doc.id);
 
+      const docName = (doc as any).page_name || (doc as any).title || 'Unknown';
+      
       if (deleteError) {
-        console.log(`❌ Failed to delete ${doc.title}: ${deleteError.message}`);
+        console.log(`❌ Failed to delete ${docName}: ${deleteError.message}`);
       } else {
-        console.log(`✅ Deleted: ${doc.title}`);
+        console.log(`✅ Deleted: ${docName}`);
         deleted++;
       }
     } catch (err) {
-      console.log(`❌ Error deleting ${doc.title}:`, err);
+      const docName = (doc as any).page_name || (doc as any).title || 'Unknown';
+      console.log(`❌ Error deleting ${docName}:`, err);
     }
   }
 

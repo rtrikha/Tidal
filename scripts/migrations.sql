@@ -19,10 +19,19 @@ CREATE INDEX IF NOT EXISTS idx_documents_page_name ON documents(page_name);
 -- This stores the path to design screenshots
 ALTER TABLE documents ADD COLUMN IF NOT EXISTS image_url TEXT;
 
+-- Migration: Ensure figma_url column exists in documents table
+-- This stores the Figma URL from identifiers.figmaUrl in JSON design files
+-- Allows fast reverse lookup from Figma links
+ALTER TABLE documents ADD COLUMN IF NOT EXISTS figma_url TEXT;
+
+-- Add index for faster Figma URL lookups
+CREATE INDEX IF NOT EXISTS idx_documents_figma_url ON documents(figma_url);
+
 -- Summary:
 -- ✅ Documents table has team_name for organization
 -- ✅ Documents table uses page_name (not title)
 -- ✅ Documents table has image_url for design screenshots
+-- ✅ Documents table has figma_url for Figma link reverse lookup
 -- ✅ No pages table - using simple document-based system
 -- ✅ Chunks link directly to documents via document_id
 

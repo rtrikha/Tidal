@@ -19,7 +19,7 @@ async function main() {
   
   // Count documents
   const { data: docs, error: docsError } = await supabase
-    .from('documents')
+    .from('designs')
     .select('id, title, type');
   
   if (docsError) {

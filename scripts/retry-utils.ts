@@ -47,7 +47,7 @@ export async function waitForSupabaseWakeup(
   while (Date.now() - startTime < maxWaitTime) {
     try {
       const { error } = await supabase
-        .from('documents')
+        .from('designs')
         .select('id')
         .limit(1);
       

@@ -7,6 +7,7 @@
   "scripts": {
     "ingest": "tsx ingest-with-bull.ts",
     "worker": "tsx ingest-worker.ts",
+    "clean-queue": "tsx clean-queue.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,9 +16,13 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.75.1",
     "bull": "^4.14.2",
+    "canvas": "^3.2.0",
     "dotenv": "^17.2.3",
     "openai": "^6.5.0",
-    "redis": "^4.6.13"
+    "pdf-parse": "^1.1.1",
+    "pdfjs-dist": "^5.4.296",
+    "redis": "^4.6.13",
+    "tesseract.js": "^6.0.1"
   },
   "devDependencies": {
     "@modelcontextprotocol/server-github": "^2025.4.8"

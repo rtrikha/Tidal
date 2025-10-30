@@ -15,7 +15,7 @@ const supabase = createClient(
 );
 
 const STORAGE_BUCKET = 'tidal-docs';
-const FOLDER_PATH = 'designs/Assets'; // Change this as needed
+const FOLDER_PATH = 'designs/Aurora_Design_System'; // Change this as needed
 
 /**
  * Recursively list all files in a folder

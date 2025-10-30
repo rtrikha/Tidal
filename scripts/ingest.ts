@@ -38,14 +38,14 @@ const openai = new OpenAI({ apiKey: OPENAI_KEY });
  */
 async function ensureTablesExist() {
   try {
-    // Check if documents table exists
+    // Check if designs table exists
     const { error: docsError } = await supabase
-      .from('documents')
+      .from('designs')
       .select('id')
       .limit(1);
     
     if (docsError && docsError.code === 'PGRST116') {
-      console.log('❌ Documents table does not exist - please set up your database schema first');
+      console.log('❌ Designs table does not exist - please set up your database schema first');
       process.exit(1);
     }
     
@@ -98,16 +98,63 @@ function chunkText(text: string): string[] {
 }
 
 /**
- * Check if file already ingested with same hash
+ * Check if file already ingested with same hash AND has chunks
+ * If hash matches but no chunks exist, returns false (needs re-ingestion)
  */
-async function isAlreadyIngested(storagePath: string, hash: string): Promise<boolean> {
-  const { data } = await supabase
-    .from('documents')
-    .select('sha256')
-    .eq('storage_path', storagePath)
-    .maybeSingle();
-  
-  return data?.sha256 === hash;
+async function isAlreadyIngested(storagePath: string, hash: string, type: 'prd' | 'design'): Promise<boolean> {
+  if (type === 'prd') {
+    const { data: prd } = await supabase
+      .from('prds')
+      .select('id, sha256')
+      .eq('storage_path', storagePath)
+      .maybeSingle();
+    
+    // If hash doesn't match, need to re-ingest
+    if (!prd || prd.sha256 !== hash) {
+      return false;
+    }
+    
+    // Hash matches, but check if chunks actually exist
+    const { data: chunks } = await supabase
+      .from('chunks')
+      .select('id')
+      .eq('prd_id', prd.id)
+      .limit(1);
+    
+    // If no chunks found, check legacy document_id
+    if (!chunks || chunks.length === 0) {
+      const { data: legacyChunks } = await supabase
+        .from('chunks')
+        .select('id')
+        .eq('document_id', prd.id)
+        .is('prd_id', null)
+        .limit(1);
+      
+      return (legacyChunks && legacyChunks.length > 0);
+    }
+    
+    return true;
+  } else {
+    const { data: doc } = await supabase
+      .from('designs')
+      .select('id, sha256')
+      .eq('storage_path', storagePath)
+      .maybeSingle();
+    
+    // If hash doesn't match, need to re-ingest
+    if (!doc || doc.sha256 !== hash) {
+      return false;
+    }
+    
+    // Hash matches, but check if chunks actually exist
+    const { data: chunks } = await supabase
+      .from('chunks')
+      .select('id')
+      .eq('document_id', doc.id)
+      .limit(1);
+    
+    return (chunks && chunks.length > 0);
+  }
 }
 
 /**
@@ -139,18 +186,33 @@ async function listStorageFilesRecursive(folderPath: string = ''): Promise<strin
     const itemPath = folderPath ? `${folderPath}/${item.name}` : item.name;
     
     // Check if it's a file or folder
-    const hasMetadata = item.metadata !== null && typeof item.metadata === 'object';
-    const hasFileExtension = item.name.match(/\.(txt|md|json)$/i);
+    // In Supabase Storage: folders have id === null, files have an id
+    // However, we also check for file extensions to be sure
+    const hasFileExtension = item.name.match(/\.(txt|md|json|pdf|ts|js|py|go|java|cpp|c|h|rb|php|rs|sh)$/i);
     
-    if (!hasMetadata || item.id === null) {
-      // Likely a folder, recurse
+    if (hasFileExtension) {
+      // Definitely a file (has extension)
+      console.log(`  📄 File: ${item.name}`);
+      files.push(itemPath);
+    } else if (item.id === null) {
+      // No ID = folder in Supabase Storage
       console.log(`  📁 Folder: ${item.name}`);
       const subFiles = await listStorageFilesRecursive(itemPath);
       files.push(...subFiles);
-    } else if (hasFileExtension) {
-      // It's a file with proper extension
-      console.log(`  📄 File: ${item.name}`);
-      files.push(itemPath);
+    } else {
+      // Has ID but no extension - could be a file without extension or edge case
+      // Try recursing first (safer - if it's a folder, we'll find files inside)
+      // If it fails or returns nothing, it's likely a file without extension
+      console.log(`  ❓ Checking: ${item.name} (has ID but no extension)`);
+      const subFiles = await listStorageFilesRecursive(itemPath);
+      if (subFiles.length > 0) {
+        // It was a folder, got files
+        files.push(...subFiles);
+      } else {
+        // No files found inside, treat as file anyway (might be file without extension)
+        console.log(`  📄 Treating as file: ${item.name}`);
+        files.push(itemPath);
+      }
     }
   }
   
@@ -229,7 +291,50 @@ async function downloadFile(path: string): Promise<string> {
       if (!data) {
         throw new Error(`File exists but has no content: ${path}`);
       }
+
+      // Handle PDF files differently
+      if (path.toLowerCase().endsWith('.pdf')) {
+        const arrayBuffer = await data.arrayBuffer();
+        const buffer = Buffer.from(arrayBuffer);
+        
+        try {
+          // Use pdf-parse for PDF text extraction
+          const pdfParse = await import('pdf-parse');
+          const pdfData = await pdfParse.default(buffer);
+          
+          // PDF text can contain invalid Unicode sequences - sanitize immediately
+          let pdfText = pdfData.text || '';
+          
+          if (!pdfText || pdfText.trim().length === 0) {
+            console.warn(`   ⚠️  PDF appears to be image-based (no extractable text)`);
+            console.warn(`   📄 This PDF contains scanned images instead of selectable text.`);
+            console.warn(`   💡 To enable OCR for image-based PDFs, you would need to:`);
+            console.warn(`      1. Install system dependencies: brew install pkg-config cairo pango libpng jpeg giflib librsvg`);
+            console.warn(`      2. Install npm packages: npm install canvas pdfjs-dist tesseract.js`);
+            console.warn(`   ❌ This PDF cannot be ingested without OCR. It will be skipped.`);
+            throw new Error('PDF is image-based (scanned) and has no extractable text. OCR is not currently configured.');
+          }
+          
+          // Remove invalid Unicode surrogates (common issue with PDF extraction)
+          pdfText = pdfText.replace(/[\uD800-\uDFFF]/g, '');
+          
+          // Remove other problematic characters
+          pdfText = pdfText
+            .replace(/\0/g, '')  // Null bytes
+            .replace(/[\x01-\x08\x0B-\x0C\x0E-\x1F\x7F]/g, '');  // Control chars
+          
+          // Normalize whitespace (PDFs often have weird spacing)
+          pdfText = pdfText.replace(/\s+/g, ' ').trim();
+          
+          return pdfText;
+        } catch (pdfError) {
+          // Fallback: try basic extraction or return empty
+          console.warn(`⚠️  Could not parse PDF ${path}:`, pdfError);
+          throw new Error(`PDF parsing failed: ${pdfError instanceof Error ? pdfError.message : 'Unknown error'}`);
+        }
+      }
       
+      // For text-based files (txt, md, json, etc.)
       return await data.text();
     },
     3,
@@ -279,7 +384,7 @@ async function ingestFileFromStorage(
     const hash = sha256(content);
     
     // Check if already ingested with same hash
-    if (await isAlreadyIngested(storagePath, hash)) {
+    if (await isAlreadyIngested(storagePath, hash, type)) {
       return { status: 'skipped', chunks: 0 };
     }
     
@@ -318,20 +423,18 @@ async function ingestFileFromStorage(
         console.log(`        Document: ${title}`);
       }
     } else if (type === 'prd' && pathParts.length >= 3 && pathParts[0] === 'prds') {
-      // Support team structure for PRDs too: prds/TeamName/file.txt
-      if (pathParts.length >= 3) {
-        teamName = pathParts[1].replace(/_\d+:\d+$/, '');
-        title = fileName.replace(/\.(txt|md|json)$/, '');
-        
-        console.log(`     📁 PRD with team detected:`);
-        console.log(`        Team: ${teamName}`);
-        console.log(`        Document: ${title}`);
-      } else {
-        title = fileName.replace(/\.(txt|md|json)$/, '');
-      }
+      // Structure: prds/team_name/file_name
+      // Extract team_name from pathParts[1] (second segment after 'prds')
+      teamName = pathParts[1].replace(/_\d+:\d+$/, '');
+      // Use the actual file name (with extension) as file_name
+      title = fileName;
+      
+      console.log(`     📁 PRD with team detected:`);
+      console.log(`        Team: ${teamName}`);
+      console.log(`        File: ${title}`);
     } else {
       // Use filename for simple structures
-      title = fileName.replace(/\.(txt|md|json)$/, '');
+      title = fileName.replace(/\.(txt|md|json|pdf)$/, '');
     }
     
     // Look for matching image
@@ -342,58 +445,116 @@ async function ingestFileFromStorage(
       console.log(`  🖼️  Found screenshot: ${path.basename(imagePath)}`);
     }
     
+    // Extract figma_url from JSON design files (from identifiers.figmaUrl)
+    let figmaUrl: string | null = null;
+    if (type === 'design' && fileName.endsWith('.json')) {
+      try {
+        const jsonData = JSON.parse(content);
+        figmaUrl = jsonData.identifiers?.figmaUrl || jsonData.figmaUrl || null;
+        if (figmaUrl) {
+          console.log(`  📎 Extracted Figma URL: ${figmaUrl.substring(0, 80)}...`);
+        }
+      } catch (e) {
+        // Not valid JSON or missing identifiers - skip figma_url extraction
+        console.log(`  ⚠️  Could not extract figma_url from JSON: ${fileName}`);
+      }
+    }
+    
     // Chunk content
     const chunks = chunkText(content);
     
     // Create embeddings
     const embeddings = await createEmbeddings(chunks);
     
-    // Check if document exists (update) or create new
-    const { data: existingDoc } = await supabase
-      .from('documents')
-      .select('id')
-      .eq('storage_path', storagePath)
-      .maybeSingle();
-    
     let docId: string;
+    let isPrd = type === 'prd';
     
-    if (existingDoc) {
-      // Update existing document
-      await supabase
-        .from('documents')
-        .update({ sha256: hash, page_name: title, type, image_url: imageUrl, team_name: teamName })
-        .eq('id', existingDoc.id);
-      
-      // Delete old chunks
-      await supabase
-        .from('chunks')
-        .delete()
-        .eq('document_id', existingDoc.id);
-      
-      docId = existingDoc.id;
-    } else {
-      // Insert new document
-      const { data: doc, error: docError } = await supabase
-        .from('documents')
-        .insert({
-          storage_path: storagePath,
-          sha256: hash,
-          type,
-          page_name: title,
-          image_url: imageUrl,
-          team_name: teamName,
-        })
+    if (isPrd) {
+      // Handle PRDs in the prds table
+      const { data: existingPrd } = await supabase
+        .from('prds')
         .select('id')
-        .single();
+        .eq('storage_path', storagePath)
+        .maybeSingle();
       
-      if (docError) throw docError;
-      docId = doc.id;
+      if (existingPrd) {
+        // Update existing PRD
+        await supabase
+          .from('prds')
+          .update({ sha256: hash, file_name: title, team_name: teamName })
+          .eq('id', existingPrd.id);
+        
+        // Delete old chunks
+        await supabase
+          .from('chunks')
+          .delete()
+          .eq('prd_id', existingPrd.id);
+        
+        docId = existingPrd.id;
+      } else {
+        // Insert new PRD
+        const { data: prd, error: prdError } = await supabase
+          .from('prds')
+          .insert({
+            storage_path: storagePath,
+            sha256: hash,
+            file_name: title,
+            team_name: teamName,
+          })
+          .select('id')
+          .single();
+        
+        if (prdError) throw prdError;
+        docId = prd.id;
+      }
+    } else {
+      // Handle designs in the designs table
+      const { data: existingDoc } = await supabase
+        .from('designs')
+        .select('id')
+        .eq('storage_path', storagePath)
+        .maybeSingle();
+      
+      if (existingDoc) {
+        // Update existing document
+        await supabase
+          .from('designs')
+          .update({ sha256: hash, page_name: title, type, image_url: imageUrl, team_name: teamName, figma_url: figmaUrl })
+          .eq('id', existingDoc.id);
+        
+        // Delete old chunks
+        await supabase
+          .from('chunks')
+          .delete()
+          .eq('document_id', existingDoc.id);
+        
+        docId = existingDoc.id;
+      } else {
+        // Insert new document
+        const { data: doc, error: docError } = await supabase
+          .from('designs')
+          .insert({
+            storage_path: storagePath,
+            sha256: hash,
+            type,
+            page_name: title,
+            image_url: imageUrl,
+            team_name: teamName,
+            figma_url: figmaUrl,
+          })
+          .select('id')
+          .single();
+        
+        if (docError) throw docError;
+        docId = doc.id;
+      }
     }
     
-    // Insert chunks directly to document (no page_id)
+    // Insert chunks directly to document or prd
     console.log(`     📄 Inserting ${chunks.length} chunks...`);
     const chunkRows = chunks.map((content, i) => ({
-      document_id: docId,
+      document_id: isPrd ? null : docId,
+      prd_id: isPrd ? docId : null,
       chunk_index: i,
       content,
     }));
